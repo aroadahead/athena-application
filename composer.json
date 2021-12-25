@@ -19,6 +19,40 @@
       "module": "Application"
     }
   },
-  "require": {},
-  "require-dev": {}
+  "require": {
+    "yonatonreid/jrk-bridge": "dev-main",
+    "yonatonreid/elephantsdk": "dev-main"
+  },
+  "require-dev": {
+    "doctrine/coding-standard": "^9.0.0",
+    "phpstan/phpstan": "^1.2.0",
+    "phpstan/phpstan-phpunit": "^1.0",
+    "phpunit/phpunit": "^9.5.10",
+    "squizlabs/php_codesniffer": "^3.6.1",
+    "vimeo/psalm": "^4.13.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Application\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ApplicationTest\\": "tests/"
+    }
+  },
+  "scripts": {
+    "check": [
+      "@cs-check",
+      "@phpstan",
+      "@psalm",
+      "@test"
+    ],
+    "cs-check": "phpcs",
+    "cs-fix": "phpcbf",
+    "phpstan": "phpstan analyse",
+    "psalm": "psalm --stats",
+    "test": "phpunit --colors=always",
+    "test-coverage": "phpunit --colors=always --coverage-clover=coverage.xml"
+  }
 }
