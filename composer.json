@@ -14,8 +14,6 @@
   "config": {
     "sort-packages": true
   },
-  "require": {
-    "aroadahead/athena-core": "dev-main"
-  },
+  "require": {},
   "require-dev": {}
 }
