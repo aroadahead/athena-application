@@ -1,0 +1,21 @@
+{
+  "name": "aroadahead/athena-application",
+  "description": "athena application",
+  "minimum-stability": "dev",
+  "license": "BSD-3-Clause",
+  "version": "0.0.1",
+  "authors": [
+    {
+      "name": "yonatonreid",
+      "email": "me@aroadahead.com",
+      "homepage": "https://aroadahead.com/me"
+    }
+  ],
+  "config": {
+    "sort-packages": true
+  },
+  "require": {
+    "aroadahead/athena-core": "dev-main"
+  },
+  "require-dev": {}
+}
