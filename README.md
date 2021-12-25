@@ -1,2 +1,2 @@
-# athena-iam
+# athena-application
 athena base application module
