@@ -14,6 +14,11 @@
   "config": {
     "sort-packages": true
   },
+  "extra": {
+    "laminas": {
+      "module": "Application"
+    }
+  },
   "require": {},
   "require-dev": {}
 }
