@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Application\Controller;
 
-use Bridge\Laminas\View\Model\ViewModel;
+use Laminas\View\Model\ViewModel;
 
 /**
  * Basic index controller
@@ -16,6 +16,11 @@ class IndexController extends ApplicationController
      */
     public function indexAction(): ViewModel
     {
-        return new ViewModel();
+        return new ViewModel([]);
+    }
+
+    public function aliveAction(): ViewModel
+    {
+        return new ViewModel(['hello'=>$this->applicationService()->hello()]);
     }
 }
