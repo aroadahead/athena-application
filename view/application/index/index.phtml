@@ -1,2 +1,9 @@
+Config:
+<div>
+    <ul>
+        <li>title: <?= $this -> config('design.html.title'); ?></li>
+        <li>company: <?= $this -> config('company.name.official'); ?></li>
+    </ul>
+</div>
 <div id="root"></div>
-<script src="<?php echo $this->basePath('dist/main.js');?>" async defer></script>
+<script src="<?php echo $this -> basePath('dist/main.js'); ?>" async defer></script>
