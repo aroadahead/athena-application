@@ -48,6 +48,9 @@ return [
             'db' => function () {
                 return Poseidon::getCore() -> getDbManager();
             },
+            'log' => function () {
+                return Poseidon::getCore()->getLogManager();
+            },
             'applicationListener' => ApplicationListenerFactory::class
         ]
     ],
