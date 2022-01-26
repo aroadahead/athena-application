@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Application\Controller\Factory\IndexControllerFactory;
 use Application\Controller\IndexController;
+use Poseidon\Poseidon;
 
 return [
     'application' => ['version' => '0.0.1'],
@@ -28,7 +29,25 @@ return [
             IndexController::class => IndexControllerFactory::class,
         ],
     ],
-    'service_manager' => [],
+    'service_manager' => [
+        'factories' => [
+            'core' => function () {
+                return Poseidon ::getCore();
+            },
+            'conf' => function () {
+                return Poseidon ::getCore() -> getConfigManager();
+            },
+            'fs' => function () {
+                return Poseidon ::getCore() -> getFilesystemManager();
+            },
+            'dp' => function () {
+                return Poseidon ::getCore() -> getFilesystemManager() -> getDirectoryPaths() -> facade();
+            },
+            'db' => function () {
+                return Poseidon::getCore() -> getDbManager();
+            }
+        ]
+    ],
     'router' => [
         'routes' => [
             'application' => [
