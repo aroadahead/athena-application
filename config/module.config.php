@@ -8,6 +8,7 @@ use Poseidon\Poseidon;
 
 return [
     'application' => ['version' => '0.0.1'],
+    'listeners' => [],
     'view_manager' => [
         'display_not_found_reason' => true,
         'display_exceptions' => true,
