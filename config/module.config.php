@@ -7,10 +7,6 @@ use Application\Controller\IndexController;
 use Poseidon\Poseidon;
 
 return [
-    'application' => ['version' => '0.0.1'],
-    'listeners' => [
-        ['service'=>'foo','enabled'=>false]
-    ],
     'view_manager' => [
         'display_not_found_reason' => true,
         'display_exceptions' => true,
