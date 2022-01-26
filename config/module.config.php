@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use Application\Controller\Factory\IndexControllerFactory;
 use Application\Controller\IndexController;
+use AthenaCore\Mvc\Service\Listener\CoreListener;
+use AthenaCore\Mvc\Service\Listener\Factory\CoreListenerFactory;
 use Poseidon\Poseidon;
 
 return [
@@ -26,7 +28,7 @@ return [
     'controllers' => [
         'factories' => [
             IndexController::class => IndexControllerFactory::class,
-        ],
+        ]
     ],
     'service_manager' => [
         'factories' => [
