@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Application;
 
-class Module
+use AthenaCore\Mvc\Application\Modules\AbstractModule;
+
+class Module extends AbstractModule
 {
     public function getConfig():array
     {
