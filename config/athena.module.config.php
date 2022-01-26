@@ -1,9 +1,8 @@
 <?php
 
-use AthenaCore\Mvc\Service\Listener\CoreListener;
-
 return [
-    'module' => ['version' => '0.0.1'],
+    'version' => '0.0.1',
+    'author' => 'jrk',
     'listeners' => [],
     'commands' => []
 ];
