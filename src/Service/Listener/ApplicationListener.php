@@ -2,20 +2,22 @@
 
 namespace Application\Service\Listener;
 
-use Laminas\EventManager\AbstractListenerAggregate;
+use AthenaCore\Mvc\Service\Listener\AbstractServiceListener;
 use Laminas\EventManager\EventManagerInterface;
-use Psr\Container\ContainerInterface;
+use Laminas\Mvc\MvcEvent;
 
-class ApplicationListener extends AbstractListenerAggregate
+class ApplicationListener extends AbstractServiceListener
 {
-    public function __construct(protected ContainerInterface $container)
-    {
-    }
     /**
      * @inheritDoc
      */
     public function attach(EventManagerInterface $events, $priority = 1)
     {
-        // TODO: Implement attach() method.
+        $this -> attachAs($events, MvcEvent::EVENT_DISPATCH, [$this, 'onRoute'], $priority);
+    }
+
+    public function onRoute(MvcEvent $e):void
+    {
+        $this->markTriggered();
     }
 }
