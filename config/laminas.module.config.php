@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Application\Controller\Factory\IndexControllerFactory;
 use Application\Controller\IndexController;
+use Application\Service\Listener\Factory\ApplicationListenerFactory;
 use AthenaCore\Mvc\Service\Listener\CoreListener;
 use AthenaCore\Mvc\Service\Listener\Factory\CoreListenerFactory;
 use Poseidon\Poseidon;
@@ -46,7 +47,8 @@ return [
             },
             'db' => function () {
                 return Poseidon::getCore() -> getDbManager();
-            }
+            },
+            'applicationListener' => ApplicationListenerFactory::class
         ]
     ],
     'router' => [
