@@ -19,5 +19,9 @@ class ApplicationListener extends AbstractServiceListener
     public function onRoute(MvcEvent $e):void
     {
         $this->markTriggered();
+
+        if($e->getRequest()->isXmlHttpRequest()){
+            $e->getResult()->setTerminal(true);
+        }
     }
 }
