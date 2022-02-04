@@ -27,7 +27,7 @@ class AbstractPathFactory implements FactoryInterface
                 $basePath = $config['view_manager']['base_path'];
             } else {
                 $config = $container -> get('conf') -> facade() -> getApplicationConfig('base_path');
-                if ($config !== null) {
+                if ($config !== false) {
                     $basePath = $config;
                 } else {
                     $request = $container -> get('Request');
