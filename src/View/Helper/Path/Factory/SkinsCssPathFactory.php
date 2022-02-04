@@ -2,10 +2,10 @@
 
 namespace Application\View\Helper\Path\Factory;
 
-use Application\View\Helper\Path\VendorPath;
+use Application\View\Helper\Path\SkinsJsPath;
 use Psr\Container\ContainerInterface;
 
-class VendorPathFactory extends AbstractPathFactory
+class SkinsCssPathFactory extends AbstractPathFactory
 {
 
     /**
@@ -15,6 +15,6 @@ class VendorPathFactory extends AbstractPathFactory
     {
         $basePath = parent ::__invoke($container, $requestedName, $options);
         $renderer = $this -> getRenderer();
-        return new VendorPath($renderer, $basePath);
+        return new SkinsJsPath($renderer, $basePath);
     }
 }

@@ -19,9 +19,15 @@ use Application\View\Helper\Path\CssPath;
 use Application\View\Helper\Path\Factory\CssPathFactory;
 use Application\View\Helper\Path\Factory\ImagePathFactory;
 use Application\View\Helper\Path\Factory\JsPathFactory;
+use Application\View\Helper\Path\Factory\SkinsCssPathFactory;
+use Application\View\Helper\Path\Factory\SkinsJsPathFactory;
+use Application\View\Helper\Path\Factory\SkinsPathFactory;
 use Application\View\Helper\Path\Factory\VendorPathFactory;
 use Application\View\Helper\Path\ImagePath;
 use Application\View\Helper\Path\JsPath;
+use Application\View\Helper\Path\SkinsCssPath;
+use Application\View\Helper\Path\SkinsJsPath;
+use Application\View\Helper\Path\SkinsPath;
 use Application\View\Helper\Path\VendorPath;
 use Laminas\Router\Http\Literal;
 use Poseidon\Poseidon;
@@ -96,6 +102,9 @@ return [
             VendorPath::class => VendorPathFactory::class,
             ImagePath::class => ImagePathFactory::class,
             ConfigData::class => ConfigDataFactory::class,
+            SkinsPath::class => SkinsPathFactory::class,
+            SkinsJsPath::class => SkinsJsPathFactory::class,
+            SkinsCssPath::class => SkinsCssPathFactory::class,
             DesignConfigData::class => DesignConfigDataFactory::class,
             ApplicationConfigData::class => ApplicationConfigDataFactory::class,
             CompanyConfigData::class => CompanyConfigDataFactory::class,
@@ -106,6 +115,9 @@ return [
             'cssPath' => CssPath::class,
             'vendorPath' => VendorPath::class,
             'imagePath' => ImagePath::class,
+            'skinsPath' => SkinsPath::class,
+            'skinsJsPath' => SkinsJsPath::class,
+            'skinsCssPath' => SkinsCssPath::class,
             'config' => ConfigData::class,
             'designConfig' => DesignConfigData::class,
             'applicationConfig' => ApplicationConfigData::class,

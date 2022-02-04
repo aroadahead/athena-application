@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Application\View\Helper\Path\Factory;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\View\Renderer\RendererInterface;
 use function is_callable;

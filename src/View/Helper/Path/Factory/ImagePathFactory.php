@@ -3,7 +3,7 @@
 namespace Application\View\Helper\Path\Factory;
 
 use Application\View\Helper\Path\ImagePath;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 class ImagePathFactory extends AbstractPathFactory
 {
