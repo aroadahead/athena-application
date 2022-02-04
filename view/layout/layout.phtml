@@ -1,9 +1,19 @@
 <html lang="en">
 <head>
     <title>Hello world</title>
-    <?= $this->jsLocalStorage();?>
+    <?= $this -> headLink() . PHP_EOL ?>
+    <?= $this -> headScript() . PHP_EOL; ?>
+    <?= $this -> jsLocalStorage(); ?>
 </head>
 <body>
-<?= $this -> content ?>
+<nav class="navbar navbar-expand-md navbar-dark mb-4" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <?= $this -> content . PHP_EOL ?>
+</div>
 </body>
 </html>

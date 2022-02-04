@@ -5,8 +5,25 @@ declare(strict_types=1);
 use Application\Controller\Factory\IndexControllerFactory;
 use Application\Controller\IndexController;
 use Application\Service\Listener\Factory\ApplicationListenerFactory;
-use AthenaCore\Mvc\Service\Listener\CoreListener;
-use AthenaCore\Mvc\Service\Listener\Factory\CoreListenerFactory;
+use Application\View\Helper\Config\ApplicationConfigData;
+use Application\View\Helper\Config\CompanyConfigData;
+use Application\View\Helper\Config\ConfigData;
+use Application\View\Helper\Config\DesignConfigData;
+use Application\View\Helper\Config\Factory\ApplicationConfigDataFactory;
+use Application\View\Helper\Config\Factory\CompanyConfigDataFactory;
+use Application\View\Helper\Config\Factory\ConfigDataFactory;
+use Application\View\Helper\Config\Factory\DesignConfigDataFactory;
+use Application\View\Helper\Config\Factory\ProjectConfigDataFactory;
+use Application\View\Helper\Config\ProjectConfigData;
+use Application\View\Helper\Path\CssPath;
+use Application\View\Helper\Path\Factory\CssPathFactory;
+use Application\View\Helper\Path\Factory\ImagePathFactory;
+use Application\View\Helper\Path\Factory\JsPathFactory;
+use Application\View\Helper\Path\Factory\VendorPathFactory;
+use Application\View\Helper\Path\ImagePath;
+use Application\View\Helper\Path\JsPath;
+use Application\View\Helper\Path\VendorPath;
+use Laminas\Router\Http\Literal;
 use Poseidon\Poseidon;
 
 return [
@@ -46,10 +63,13 @@ return [
                 return Poseidon ::getCore() -> getFilesystemManager() -> getDirectoryPaths() -> facade();
             },
             'db' => function () {
-                return Poseidon::getCore() -> getDbManager();
+                return Poseidon ::getCore() -> getDbManager();
             },
             'log' => function () {
-                return Poseidon::getCore()->getLogManager();
+                return Poseidon ::getCore() -> getLogManager();
+            },
+            'design' => function () {
+                return Poseidon ::getCore() -> getDesignManager();
             },
             'applicationListener' => ApplicationListenerFactory::class
         ]
@@ -57,7 +77,7 @@ return [
     'router' => [
         'routes' => [
             'application' => [
-                'type' => 'literal',
+                'type' => Literal::class,
                 'options' => [
                     'route' => '/',
                     'defaults' => [
@@ -69,5 +89,28 @@ return [
         ],
     ],
     'translator' => [],
-    'view_helpers' => [],
+    'view_helpers' => [
+        'factories' => [
+            JsPath::class => JsPathFactory::class,
+            CssPath::class => CssPathFactory::class,
+            VendorPath::class => VendorPathFactory::class,
+            ImagePath::class => ImagePathFactory::class,
+            ConfigData::class => ConfigDataFactory::class,
+            DesignConfigData::class => DesignConfigDataFactory::class,
+            ApplicationConfigData::class => ApplicationConfigDataFactory::class,
+            CompanyConfigData::class => CompanyConfigDataFactory::class,
+            ProjectConfigData::class => ProjectConfigDataFactory::class
+        ],
+        'aliases' => [
+            'jsPath' => JsPath::class,
+            'cssPath' => CssPath::class,
+            'vendorPath' => VendorPath::class,
+            'imagePath' => ImagePath::class,
+            'config' => ConfigData::class,
+            'designConfig' => DesignConfigData::class,
+            'applicationConfig' => ApplicationConfigData::class,
+            'companyConfig' => CompanyConfigData::class,
+            'projectConfig' => ProjectConfigData::class
+        ]
+    ],
 ];
