@@ -1,9 +1,15 @@
+<?php $designCharsetConfig = $this->designConfig('meta.charset'); ?>
 <html lang="en">
 <head>
+    <?php if ($designCharsetConfig -> use_meta_charset_head): ?>
+        <?= $this -> headMeta() -> setAutoEscape($designCharsetConfig -> autoEscape) -> setCharset($designCharsetConfig -> charset) . PHP_EOL ?>
+    <?php else: ?>
+        <?= $this -> headMeta() -> setAutoEscape($designCharsetConfig -> autoEscape) . PHP_EOL ?>
+    <?php endif; ?>
     <title>Hello world</title>
-    <?= $this -> addIeElements() . PHP_EOL ?>
     <?= $this -> headMeta() . PHP_EOL ?>
     <?= $this -> headLink() . PHP_EOL ?>
+    <?= $this -> addIeElements() . PHP_EOL ?>
     <?= $this -> headScript() . PHP_EOL; ?>
     <?= $this -> jsLocalStorage(); ?>
 </head>
