@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace Application\Service\Listener;
 
 use AthenaCore\Mvc\Service\Listener\AbstractServiceListener;
