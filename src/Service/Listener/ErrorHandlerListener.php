@@ -7,7 +7,6 @@ use AthenaCore\Mvc\Controller\MvcController;
 use Laminas\EventManager\EventManagerInterface;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Stdlib\ResponseInterface;
-use function var_dump;
 
 class ErrorHandlerListener extends \AthenaCore\Mvc\Service\Listener\AbstractServiceListener
 {
@@ -20,15 +19,14 @@ class ErrorHandlerListener extends \AthenaCore\Mvc\Service\Listener\AbstractServ
         $this -> attachAs($events, MvcEvent::EVENT_DISPATCH_ERROR, [$this, 'onDispatchError'], $priority);
     }
 
-    public function onDispatchError(MvcEvent $e): void
+    public function onDispatchError(MvcEvent $e): ResponseInterface
     {
-        $router = $e -> getRouter();
-        $localeKey = $router -> getLastMatchedLocaleKey();
-        $base = $router -> getBaseUrl();
         $response = $e -> getResponse();
+        $renderer = $this -> container -> get('ViewHelperManager') -> getRenderer();
 
         if (empty($e -> getRouteMatch())) {
-            $response -> getHeaders() -> addHeaderLine('Location', "{$base}/{$localeKey}/not-found");
+            $serverUrl = $renderer -> url('not-found', [], ['force_canonical' => true]);
+            $response -> getHeaders() -> addHeaderLine('Location', $serverUrl);
             $response -> setStatusCode(MvcController::NOT_FOUND);
         } else {
             $session = new ExceptionContainer();
@@ -37,9 +35,11 @@ class ErrorHandlerListener extends \AthenaCore\Mvc\Service\Listener\AbstractServ
             $session -> setController($e -> getController());
             $session -> setControllerClass($e -> getControllerClass());
             $session -> setException($e -> getParam('exception', false));
-            $response -> getHeaders() -> addHeaderLine('Location', "{$base}/{$localeKey}/error");
+            $serverUrl = $renderer -> url('error', [], ['force_canonical' => true]);
+            $response -> getHeaders() -> addHeaderLine('Location', $serverUrl);
             $response -> setStatusCode(MvcController::SERVER_ERROR);
         }
-        echo $response->sendHeaders();
+        $response -> sendHeaders();
+        return $response;
     }
 }
