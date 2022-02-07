@@ -22,7 +22,9 @@ use Application\View\Helper\Config\Factory\DesignConfigDataFactory;
 use Application\View\Helper\Config\Factory\ProjectConfigDataFactory;
 use Application\View\Helper\Config\ProjectConfigData;
 use Application\View\Helper\Factory\AddIEElementsFactory;
+use Application\View\Helper\Factory\LanguageDropDownFactory;
 use Application\View\Helper\Factory\XmlDeclarationFactory;
+use Application\View\Helper\LanguageDropDown;
 use Application\View\Helper\Path\CssPath;
 use Application\View\Helper\Path\Factory\CssPathFactory;
 use Application\View\Helper\Path\Factory\ImagePathFactory;
@@ -196,7 +198,8 @@ return [
             CompanyConfigData::class => CompanyConfigDataFactory::class,
             ProjectConfigData::class => ProjectConfigDataFactory::class,
             AddIEElements::class => AddIEElementsFactory::class,
-            XmlDeclaration::class => XmlDeclarationFactory::class
+            XmlDeclaration::class => XmlDeclarationFactory::class,
+            LanguageDropDown::class => LanguageDropDownFactory::class
         ],
         'aliases' => [
             'jsPath' => JsPath::class,
@@ -212,7 +215,8 @@ return [
             'companyConfig' => CompanyConfigData::class,
             'projectConfig' => ProjectConfigData::class,
             'addIeElements' => AddIEElements::class,
-            'xmlDeclaration' => XmlDeclaration::class
+            'xmlDeclaration' => XmlDeclaration::class,
+            'languageDropDown' => LanguageDropDown::class
         ]
     ],
 ];
