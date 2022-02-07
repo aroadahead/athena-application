@@ -158,9 +158,9 @@ class LanguageTreeRouteStack extends TranslatorAwareTreeRouteStack
         $translator -> setLocale($locale);
         $translator -> setFallbackLocale($defaultLocale);
         \Locale ::setDefault($locale);
-        $log -> info("Translator set: $locale with fallback $defaultLocale");
+        $log -> info("Translator Locale Set: $locale with Fallback Locale: $defaultLocale");
 
-        $log -> info("Locale set: $locale with Key: $localeKey");
+        $log -> info("Intl Locale set: $locale with Router Locale Key: $localeKey");
         $res = parent ::match($request, $pathOffset, $options);
         $this -> setBaseUrl($oldBase);
         if ($res instanceof RouteMatch && !empty($locale)) {
