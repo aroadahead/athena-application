@@ -6,7 +6,7 @@ return [
     'listeners' => [
         ['service' => 'applicationListener', 'enabled' => true, 'priority' => 5000],
         ['service' => 'localeRouteInjector', 'enabled' => false, 'priority' => 30],
-        ['service' => 'errorHandlerListener','enabled'=>true,'priority'=>1000]
+        ['service' => 'errorHandlerListener','enabled'=>true,'priority'=>1]
     ],
     'commands' => []
 ];
