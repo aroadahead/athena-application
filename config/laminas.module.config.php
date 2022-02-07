@@ -7,6 +7,7 @@ use Application\Controller\IndexController;
 use Application\Mvc\Router\Http\Factory\LanguageTreeRouteStackDelegatorFactory;
 use Application\Mvc\Router\Http\LanguageTreeRouteStack;
 use Application\Service\Listener\Factory\ApplicationListenerFactory;
+use Application\Service\Listener\Factory\ErrorHandlerListenerFactory;
 use Application\Service\Listener\Factory\LocaleRouteInjectorListenerFactory;
 use Application\View\Helper\AddIEElements;
 use Application\View\Helper\Config\ApplicationConfigData;
@@ -96,7 +97,8 @@ return [
                 return $core -> getEnvironmentManager();
             },
             'applicationListener' => ApplicationListenerFactory::class,
-            'localeRouteInjector' => LocaleRouteInjectorListenerFactory::class
+            'localeRouteInjector' => LocaleRouteInjectorListenerFactory::class,
+            'errorHandlerListener' => ErrorHandlerListenerFactory::class
         ],
         'delegators' => [
             'HttpRouter' => [LanguageTreeRouteStackDelegatorFactory::class],
