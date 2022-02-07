@@ -5,7 +5,7 @@ return [
     'author' => 'jrk',
     'listeners' => [
         ['service' => 'applicationListener', 'enabled' => true, 'priority' => 5000],
-        ['service' => 'localeRouteInjector', 'enabled' => true, 'priority' => 30]
+        ['service' => 'localeRouteInjector', 'enabled' => false, 'priority' => 30]
     ],
     'commands' => []
 ];
