@@ -2,6 +2,7 @@
 
 namespace Application\View\Helper;
 
+use Poseidon\Poseidon;
 use Psr\Container\ContainerInterface;
 
 class LanguageDropDown extends AbstractViewHelper
@@ -26,8 +27,9 @@ class LanguageDropDown extends AbstractViewHelper
 
     private function getUrl($locale): string
     {
-        $route = $this -> container -> get('registry') -> fetch("app.route.matchedName");
-        $currParams = $this -> container -> get('registry') -> fetch("app.route.params");
+        $registry = Poseidon::registry();
+        $route = $registry -> fetch("app.route.matchedName");
+        $currParams = $registry -> fetch("app.route.params");
         $currParams['locale'] = $locale;
         return $this -> getView() -> url($route, $currParams, [], true);
     }
