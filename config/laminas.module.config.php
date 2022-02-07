@@ -7,6 +7,7 @@ use Application\Controller\IndexController;
 use Application\Mvc\Router\Http\Factory\LanguageTreeRouteStackDelegatorFactory;
 use Application\Mvc\Router\Http\LanguageTreeRouteStack;
 use Application\Service\Listener\Factory\ApplicationListenerFactory;
+use Application\Service\Listener\Factory\LocaleRouteInjectorListenerFactory;
 use Application\View\Helper\AddIEElements;
 use Application\View\Helper\Config\ApplicationConfigData;
 use Application\View\Helper\Config\CompanyConfigData;
@@ -89,7 +90,8 @@ return [
             'design' => function () use ($core) {
                 return $core -> getDesignManager();
             },
-            'applicationListener' => ApplicationListenerFactory::class
+            'applicationListener' => ApplicationListenerFactory::class,
+            'localeRouteInjector' => LocaleRouteInjectorListenerFactory::class
         ],
         'delegators' => [
             'HttpRouter' => [LanguageTreeRouteStackDelegatorFactory::class],
