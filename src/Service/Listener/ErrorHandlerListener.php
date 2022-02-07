@@ -39,7 +39,6 @@ class ErrorHandlerListener extends \AthenaCore\Mvc\Service\Listener\AbstractServ
             $response -> getHeaders() -> addHeaderLine('Location', "{$base}/{$localeKey}/error");
             $response -> setStatusCode(MvcController::SERVER_ERROR);
         }
-        $response -> sendHeaders();
         return $response;
     }
 }
