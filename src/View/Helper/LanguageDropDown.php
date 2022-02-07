@@ -35,8 +35,8 @@ class LanguageDropDown extends AbstractViewHelper
     private function getNavBarContent(): string
     {
         $xhtml = "";
-        $languages = $this -> container -> get('conf') -> lookup('application.language.available', true);
-        $languageMeta = $this -> container -> get('conf') -> lookup('application.language.meta', true);
+        $languages = $this -> container -> get('conf') -> lookup('i18n.language.available', true);
+        $languageMeta = $this -> container -> get('conf') -> lookup('i18n.language.meta', true);
         foreach ($languages as $lang => $locale) {
             $meta = $languageMeta[$lang];
             $languageDisplay = $meta['language'];
