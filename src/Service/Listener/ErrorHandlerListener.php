@@ -7,6 +7,7 @@ use AthenaCore\Mvc\Controller\MvcController;
 use Laminas\EventManager\EventManagerInterface;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Stdlib\ResponseInterface;
+use function var_dump;
 
 class ErrorHandlerListener extends \AthenaCore\Mvc\Service\Listener\AbstractServiceListener
 {
@@ -39,6 +40,7 @@ class ErrorHandlerListener extends \AthenaCore\Mvc\Service\Listener\AbstractServ
             $response -> getHeaders() -> addHeaderLine('Location', "{$base}/{$localeKey}/error");
             $response -> setStatusCode(MvcController::SERVER_ERROR);
         }
+        var_dump($response);die();
         return $response;
     }
 }
