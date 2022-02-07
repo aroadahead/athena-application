@@ -45,6 +45,7 @@ use Application\View\Helper\Path\SkinsPath;
 use Application\View\Helper\Path\VendorPath;
 use Application\View\Helper\XmlDeclaration;
 use Laminas\I18n\Translator\Loader\Ini;
+use Laminas\Navigation\Service\ConstructedNavigationFactory;
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
 use Poseidon\Poseidon;
@@ -114,7 +115,9 @@ return [
             'applicationListener' => ApplicationListenerFactory::class,
             'localeRouteInjector' => LocaleRouteInjectorListenerFactory::class,
             'errorHandlerListener' => ErrorHandlerListenerFactory::class,
-            'module.service.application' => ApplicationServiceFactory::class
+            'module.service.application' => ApplicationServiceFactory::class,
+            'Navigation' => new ConstructedNavigationFactory([]),
+            'navigation' => new ConstructedNavigationFactory([])
         ],
         'delegators' => [
             'HttpRouter' => [LanguageTreeRouteStackDelegatorFactory::class],
