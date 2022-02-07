@@ -6,6 +6,7 @@ use Application\Controller\Factory\IndexControllerFactory;
 use Application\Controller\IndexController;
 use Application\Mvc\Router\Http\Factory\LanguageTreeRouteStackDelegatorFactory;
 use Application\Mvc\Router\Http\LanguageTreeRouteStack;
+use Application\Service\Factory\ApplicationServiceFactory;
 use Application\Service\Listener\Factory\ApplicationListenerFactory;
 use Application\Service\Listener\Factory\ErrorHandlerListenerFactory;
 use Application\Service\Listener\Factory\LocaleRouteInjectorListenerFactory;
@@ -45,7 +46,7 @@ use Poseidon\Poseidon;
 $core = Poseidon ::getCore();
 $defaultLocale = $core -> getConfigManager()
     -> facade() -> getI18nConfig('language.default.locale');
-$laminas = $core->getLaminasManager();
+$laminas = $core -> getLaminasManager();
 return [
     'view_manager' => [
         'display_not_found_reason' => true,
@@ -97,11 +98,12 @@ return [
                 return $core -> getEnvironmentManager();
             },
             'laminas' => function () use ($core) {
-                return $core->getLaminasManager();
+                return $core -> getLaminasManager();
             },
             'applicationListener' => ApplicationListenerFactory::class,
             'localeRouteInjector' => LocaleRouteInjectorListenerFactory::class,
-            'errorHandlerListener' => ErrorHandlerListenerFactory::class
+            'errorHandlerListener' => ErrorHandlerListenerFactory::class,
+            'module.service.application' => ApplicationServiceFactory::class
         ],
         'delegators' => [
             'HttpRouter' => [LanguageTreeRouteStackDelegatorFactory::class],
@@ -121,7 +123,7 @@ return [
             'home' => [
                 'type' => Literal::class,
                 'options' => [
-                    'route' => $laminas->route('home','application'),
+                    'route' => $laminas -> route('home', 'application'),
                     'defaults' => [
                         'controller' => IndexController::class,
                         'action' => 'index',
@@ -131,7 +133,7 @@ return [
             'not-found' => [
                 'type' => Literal::class,
                 'options' => [
-                    'route' => $laminas->route('not-found','application'),
+                    'route' => $laminas -> route('not-found', 'application'),
                     'defaults' => [
                         'controller' => IndexController::class,
                         'action' => 'not-found'
@@ -141,7 +143,7 @@ return [
             'error' => [
                 'type' => Literal::class,
                 'options' => [
-                    'route' => $laminas->route('error','application'),
+                    'route' => $laminas -> route('error', 'application'),
                     'defaults' => [
                         'controller' => IndexController::class,
                         'action' => 'error'
@@ -151,7 +153,7 @@ return [
             'alive' => [
                 'type' => Literal::class,
                 'options' => [
-                    'route' => $laminas->route('alive','application'),
+                    'route' => $laminas -> route('alive', 'application'),
                     'defaults' => [
                         'controller' => IndexController::class,
                         'action' => 'alive'
