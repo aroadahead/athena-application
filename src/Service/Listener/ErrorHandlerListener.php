@@ -19,7 +19,7 @@ class ErrorHandlerListener extends \AthenaCore\Mvc\Service\Listener\AbstractServ
         $this -> attachAs($events, MvcEvent::EVENT_DISPATCH_ERROR, [$this, 'onDispatchError'], $priority);
     }
 
-    public function onDispatchError(MvcEvent $e): ResponseInterface
+    public function onDispatchError(MvcEvent $e): void
     {
         $response = $e -> getResponse();
         $renderer = $this -> container -> get('ViewHelperManager') -> getRenderer();
@@ -39,7 +39,6 @@ class ErrorHandlerListener extends \AthenaCore\Mvc\Service\Listener\AbstractServ
             $response -> getHeaders() -> addHeaderLine('Location', $serverUrl);
             $response -> setStatusCode(MvcController::SERVER_ERROR);
         }
-        echo $response -> sendHeaders();
-        return $response;
+        $response -> sendHeaders();
     }
 }
