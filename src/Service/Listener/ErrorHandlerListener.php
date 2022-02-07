@@ -33,6 +33,7 @@ class ErrorHandlerListener extends \AthenaCore\Mvc\Service\Listener\AbstractServ
             $serverUrl = $renderer -> url('not-found', [], $force);
             $response -> getHeaders() -> addHeaderLine('Location', $serverUrl);
             $response -> setStatusCode(MvcController::NOT_FOUND);
+            $response -> sendHeaders();
         } else {
             $session = new ExceptionContainer();
             $session -> setMessage($e -> getResult());
@@ -43,7 +44,8 @@ class ErrorHandlerListener extends \AthenaCore\Mvc\Service\Listener\AbstractServ
             $serverUrl = $renderer -> url('error', [], $force);
             $response -> getHeaders() -> addHeaderLine('Location', $serverUrl);
             $response -> setStatusCode(MvcController::SERVER_ERROR);
+            $response -> sendHeaders();
+            return $response;
         }
-        $response -> sendHeaders();
     }
 }
