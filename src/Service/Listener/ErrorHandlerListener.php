@@ -20,7 +20,7 @@ class ErrorHandlerListener extends \AthenaCore\Mvc\Service\Listener\AbstractServ
         $this -> attachAs($events, MvcEvent::EVENT_DISPATCH_ERROR, [$this, 'onDispatchError'], $priority);
     }
 
-    public function onDispatchError(MvcEvent $e): ResponseInterface
+    public function onDispatchError(MvcEvent $e): void
     {
         $router = $e -> getRouter();
         $localeKey = $router -> getLastMatchedLocaleKey();
@@ -40,6 +40,6 @@ class ErrorHandlerListener extends \AthenaCore\Mvc\Service\Listener\AbstractServ
             $response -> getHeaders() -> addHeaderLine('Location', "{$base}/{$localeKey}/error");
             $response -> setStatusCode(MvcController::SERVER_ERROR);
         }
-        return $response;
+        $response->sendHeaders();
     }
 }
