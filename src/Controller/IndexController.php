@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Application\Controller;
 
 use Application\Session\Container\ExceptionContainer;
+use Laminas\View\Model\JsonModel;
 use Laminas\View\Model\ViewModel;
 
 /**
@@ -20,9 +21,9 @@ class IndexController extends ApplicationController
         return new ViewModel([]);
     }
 
-    public function aliveAction(): ViewModel
+    public function aliveAction(): JsonModel
     {
-        return new ViewModel(['hello' => $this -> applicationService() -> hello()]);
+        return new JsonModel(['hello' => $this -> applicationService() -> hello()]);
     }
 
     /**
