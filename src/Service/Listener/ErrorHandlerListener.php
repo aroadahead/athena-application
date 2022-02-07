@@ -25,10 +25,7 @@ class ErrorHandlerListener extends \AthenaCore\Mvc\Service\Listener\AbstractServ
         $renderer = $this -> container -> get('ViewHelperManager') -> getRenderer();
         $forceCanonicalRedirect = $this -> container -> get('conf')
             -> lookup('application.force_canonical_on_error_redirect');
-        $force = [];
-        if ($forceCanonicalRedirect) {
-            $force = ['force_canonical' => true];
-        }
+        $force = ['force_canonical' => $forceCanonicalRedirect];
         if (empty($e -> getRouteMatch())) {
             $serverUrl = $renderer -> url('not-found', [], $force);
             $response -> getHeaders() -> addHeaderLine('Location', $serverUrl);
