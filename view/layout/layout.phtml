@@ -5,7 +5,7 @@
 <?= $this -> doctype($designConfig -> html -> doctype) . PHP_EOL ?>
 <html lang="en">
 <head>
-    <title>Hello world</title>
+    <?= $this -> headTitle() . PHP_EOL ?>
     <?= $this -> headMeta() . PHP_EOL ?>
     <?= $this -> headLink() . PHP_EOL ?>
     <?= $this -> addIeElements() . PHP_EOL ?>
