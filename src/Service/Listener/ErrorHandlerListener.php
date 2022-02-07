@@ -6,6 +6,7 @@ use Application\Session\Container\ExceptionContainer;
 use AthenaCore\Mvc\Controller\MvcController;
 use Laminas\EventManager\EventManagerInterface;
 use Laminas\Mvc\MvcEvent;
+use Laminas\Stdlib\Response;
 use Laminas\Stdlib\ResponseInterface;
 
 class ErrorHandlerListener extends \AthenaCore\Mvc\Service\Listener\AbstractServiceListener
@@ -24,8 +25,7 @@ class ErrorHandlerListener extends \AthenaCore\Mvc\Service\Listener\AbstractServ
         $router = $e -> getRouter();
         $localeKey = $router -> getLastMatchedLocaleKey();
         $base = $router -> getBaseUrl();
-        $response = $e -> getResponse();
-
+        $response = new \Laminas\Http\Response();
         if (empty($e -> getRouteMatch())) {
             $response -> getHeaders() -> addHeaderLine('Location', "{$base}/{$localeKey}/not-found");
             $response -> setStatusCode(MvcController::NOT_FOUND);
