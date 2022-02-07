@@ -145,6 +145,8 @@ class LanguageTreeRouteStack extends TranslatorAwareTreeRouteStack
             $locale = $this -> lookup('language.default.locale');
         }
         $this -> setLastMatchedLocale($locale);
+        $log = Poseidon ::getCore() -> getLogManager();
+        $log -> info("Locale set: $locale with Key: $localeKey");
         $res = parent ::match($request, $pathOffset, $options);
         $this -> setBaseUrl($oldBase);
         if ($res instanceof RouteMatch && !empty($locale)) {
