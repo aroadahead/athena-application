@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use Application\Controller\Factory\IndexControllerFactory;
 use Application\Controller\IndexController;
+use Application\Mvc\Router\Http\Factory\LanguageTreeRouteStackDelegatorFactory;
+use Application\Mvc\Router\Http\LanguageTreeRouteStack;
 use Application\Service\Listener\Factory\ApplicationListenerFactory;
 use Application\View\Helper\AddIEElements;
 use Application\View\Helper\Config\ApplicationConfigData;
@@ -33,8 +35,12 @@ use Application\View\Helper\Path\SkinsJsPath;
 use Application\View\Helper\Path\SkinsPath;
 use Application\View\Helper\Path\VendorPath;
 use Application\View\Helper\XmlDeclaration;
+use Laminas\I18n\Translator\Loader\Ini;
 use Laminas\Router\Http\Literal;
 use Poseidon\Poseidon;
+
+
+$core = Poseidon ::getCore();
 
 return [
     'view_manager' => [
@@ -60,29 +66,41 @@ return [
     ],
     'service_manager' => [
         'factories' => [
-            'core' => function () {
-                return Poseidon ::getCore();
+            'core' => function () use ($core) {
+                return $core;
             },
-            'conf' => function () {
-                return Poseidon ::getCore() -> getConfigManager();
+            'conf' => function () use ($core) {
+                return $core -> getConfigManager();
             },
-            'fs' => function () {
-                return Poseidon ::getCore() -> getFilesystemManager();
+            'fs' => function () use ($core) {
+                return $core -> getFilesystemManager();
             },
-            'dp' => function () {
-                return Poseidon ::getCore() -> getFilesystemManager() -> getDirectoryPaths() -> facade();
+            'dp' => function () use ($core) {
+                return $core -> getFilesystemManager() -> getDirectoryPaths() -> facade();
             },
-            'db' => function () {
-                return Poseidon ::getCore() -> getDbManager();
+            'db' => function () use ($core) {
+                return $core -> getDbManager();
             },
-            'log' => function () {
-                return Poseidon ::getCore() -> getLogManager();
+            'log' => function () use ($core) {
+                return $core -> getLogManager();
             },
-            'design' => function () {
-                return Poseidon ::getCore() -> getDesignManager();
+            'design' => function () use ($core) {
+                return $core -> getDesignManager();
             },
             'applicationListener' => ApplicationListenerFactory::class
-        ]
+        ],
+        'delegators' => [
+            'HttpRouter' => [LanguageTreeRouteStackDelegatorFactory::class],
+            'Laminas\Router\Http\TreeRouteStack' => [LanguageTreeRouteStackDelegatorFactory::class]
+        ],
+        'services' => [],
+        'invokables' => [],
+        'abstract_factories' => [],
+        'aliases' => [],
+        'initializers' => [],
+        'lazy_services' => [],
+        'shared' => [],
+        'shared_by_default' => []
     ],
     'router' => [
         'routes' => [
@@ -97,8 +115,24 @@ return [
                 ],
             ],
         ],
+        'router_class' => LanguageTreeRouteStack::class,
+        'default_params' => [
+            'locale' => $core -> getConfigManager()
+                -> facade() -> getI18nConfig('language.default.locale')
+        ],
+        'translator_text_domain' => 'routing'
     ],
-    'translator' => [],
+    'translator' => [
+        'locale' => 'en_US',
+        'translation_file_patterns' => array(
+            array(
+                'type' => Ini::class,
+                'base_dir' => $core -> getFilesystemManager()
+                    -> getDirectoryPaths() -> facade() -> language(),
+                'pattern' => '%s.ini'
+            )
+        )
+    ],
     'view_helpers' => [
         'factories' => [
             JsPath::class => JsPathFactory::class,
