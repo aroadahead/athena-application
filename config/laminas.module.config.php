@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Application\Controller\Factory\IndexControllerFactory;
 use Application\Controller\IndexController;
 use Application\Service\Listener\Factory\ApplicationListenerFactory;
+use Application\View\Helper\AddIEElements;
 use Application\View\Helper\Config\ApplicationConfigData;
 use Application\View\Helper\Config\CompanyConfigData;
 use Application\View\Helper\Config\ConfigData;
@@ -15,6 +16,7 @@ use Application\View\Helper\Config\Factory\ConfigDataFactory;
 use Application\View\Helper\Config\Factory\DesignConfigDataFactory;
 use Application\View\Helper\Config\Factory\ProjectConfigDataFactory;
 use Application\View\Helper\Config\ProjectConfigData;
+use Application\View\Helper\Factory\AddIEElementsFactory;
 use Application\View\Helper\Path\CssPath;
 use Application\View\Helper\Path\Factory\CssPathFactory;
 use Application\View\Helper\Path\Factory\ImagePathFactory;
@@ -108,7 +110,8 @@ return [
             DesignConfigData::class => DesignConfigDataFactory::class,
             ApplicationConfigData::class => ApplicationConfigDataFactory::class,
             CompanyConfigData::class => CompanyConfigDataFactory::class,
-            ProjectConfigData::class => ProjectConfigDataFactory::class
+            ProjectConfigData::class => ProjectConfigDataFactory::class,
+            AddIEElements::class => AddIEElementsFactory::class
         ],
         'aliases' => [
             'jsPath' => JsPath::class,
@@ -122,7 +125,8 @@ return [
             'designConfig' => DesignConfigData::class,
             'applicationConfig' => ApplicationConfigData::class,
             'companyConfig' => CompanyConfigData::class,
-            'projectConfig' => ProjectConfigData::class
+            'projectConfig' => ProjectConfigData::class,
+            'addIeElements' => AddIEElements::class
         ]
     ],
 ];
