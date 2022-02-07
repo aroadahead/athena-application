@@ -39,7 +39,7 @@ class ErrorHandlerListener extends \AthenaCore\Mvc\Service\Listener\AbstractServ
             $response -> getHeaders() -> addHeaderLine('Location', $serverUrl);
             $response -> setStatusCode(MvcController::SERVER_ERROR);
         }
-        $response -> sendHeaders();
+        echo $response -> sendHeaders();
         return $response;
     }
 }
