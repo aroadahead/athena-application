@@ -20,7 +20,9 @@ use Application\View\Helper\Config\Factory\CompanyConfigDataFactory;
 use Application\View\Helper\Config\Factory\ConfigDataFactory;
 use Application\View\Helper\Config\Factory\DesignConfigDataFactory;
 use Application\View\Helper\Config\Factory\ProjectConfigDataFactory;
+use Application\View\Helper\Config\Factory\ProjectRouteConfigDataFactory;
 use Application\View\Helper\Config\ProjectConfigData;
+use Application\View\Helper\Config\ProjectRouteConfigData;
 use Application\View\Helper\Factory\AddIEElementsFactory;
 use Application\View\Helper\Factory\LanguageDropDownFactory;
 use Application\View\Helper\Factory\XmlDeclarationFactory;
@@ -199,7 +201,8 @@ return [
             ProjectConfigData::class => ProjectConfigDataFactory::class,
             AddIEElements::class => AddIEElementsFactory::class,
             XmlDeclaration::class => XmlDeclarationFactory::class,
-            LanguageDropDown::class => LanguageDropDownFactory::class
+            LanguageDropDown::class => LanguageDropDownFactory::class,
+            ProjectRouteConfigData::class => ProjectRouteConfigDataFactory::class
         ],
         'aliases' => [
             'jsPath' => JsPath::class,
@@ -216,7 +219,8 @@ return [
             'projectConfig' => ProjectConfigData::class,
             'addIeElements' => AddIEElements::class,
             'xmlDeclaration' => XmlDeclaration::class,
-            'languageDropDown' => LanguageDropDown::class
+            'languageDropDown' => LanguageDropDown::class,
+            'projectRouteConfig' => ProjectRouteConfigData::class
         ]
     ],
 ];
