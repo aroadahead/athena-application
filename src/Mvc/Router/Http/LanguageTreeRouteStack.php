@@ -16,6 +16,7 @@ class LanguageTreeRouteStack extends TranslatorAwareTreeRouteStack
     protected string $lastMatchedLocaleKey;
     protected ConfigManager $configManager;
     protected ?Config $defaultConfig = null;
+    protected bool $isMatched = false;
 
     public function __construct(RoutePluginManager $routePluginManager = null)
     {
@@ -111,6 +112,10 @@ class LanguageTreeRouteStack extends TranslatorAwareTreeRouteStack
 
     public function match(RequestInterface $request, $pathOffset = null, array $options = []): mixed
     {
+        if ($this -> isMatched) {
+            return true;
+        }
+        $this -> isMatched = true;
         if (!method_exists($request, 'getUri')) {
             return null;
         }
