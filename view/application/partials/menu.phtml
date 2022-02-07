@@ -1,0 +1,36 @@
+<ul class="nav navbar-nav">
+    <?php foreach ($this -> container as $page): ?>
+        <?php //if (!$this -> aclAllowed($page -> resource)) continue; ?>
+        <?php $hasChildren = $page -> hasPages() ?>
+        <?php if (!$hasChildren): ?>
+            <li <?php if ($page -> isActive()) echo 'class="active nav-item"' ?>>
+                <a class="nav-link" href="<?php echo $page -> getHref() ?>">
+                    <?php echo $this -> translate($page -> getLabel()) ?>
+                    <?php if ($page -> isActive()): ?>
+                        <span class="sr-only">(current)</span>
+                    <?php endif; ?>
+                </a>
+            </li>
+        <?php else: ?>
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown"
+                                             href="#" id="link_<?php echo $page -> getId() ?>" role="button"
+                                             aria-haspopup="true"
+                                             aria-expanded="false"><?php echo $this -> translate($page -> getLabel()) ?>
+                    <span
+                        class="caret"></span></a>
+                <div class="dropdown-menu"
+                     aria-labelledby="link_<?php echo $page -> getId() ?>">
+                    <?php foreach ($page -> getPages() as $child): ?>
+                        <?php //if (!$this -> aclAllowed($child -> resource)) continue; ?>
+                        <a class="dropdown-item"
+                           href="<?php echo $child -> getHref() ?>"><?php echo $this -> translate($child -> getLabel()) ?></a>
+
+                    <?php endforeach; ?>
+                </div>
+            </li>
+        <?php endif; ?>
+    <?php endforeach; ?>
+    <?php if ($this -> designConfig('layout.extra.include_language_nav_dropdown')): ?>
+        <?= $this -> languageDropdown() . PHP_EOL; ?>
+    <?php endif; ?>
+</ul>
