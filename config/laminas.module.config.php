@@ -50,11 +50,13 @@ return [
         'display_not_found_reason' => true,
         'display_exceptions' => true,
         'doctype' => 'HTML5',
-        'not_found_template' => 'error/404',
-        'exception_template' => 'error/index',
+        'not_found_template' => 'application/index/not-found',
+        'exception_template' => 'application/index/error',
         'template_map' => [
             'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
             'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
+            'application/index/not-found' => __DIR__ . '/../view/application/index/not-found.phtml',
+            'application/index/error' => __DIR__ . '/../view/application/index/error.phtml',
             'error/404' => __DIR__ . '/../view/error/404.phtml',
             'error/index' => __DIR__ . '/../view/error/index.phtml',
         ],
@@ -89,6 +91,9 @@ return [
             },
             'design' => function () use ($core) {
                 return $core -> getDesignManager();
+            },
+            'env' => function () use ($core) {
+                return $core -> getEnvironmentManager();
             },
             'applicationListener' => ApplicationListenerFactory::class,
             'localeRouteInjector' => LocaleRouteInjectorListenerFactory::class
