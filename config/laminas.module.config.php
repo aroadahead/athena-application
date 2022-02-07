@@ -41,6 +41,8 @@ use Poseidon\Poseidon;
 
 
 $core = Poseidon ::getCore();
+$defaultLocale = $core -> getConfigManager()
+    -> facade() -> getI18nConfig('language.default.locale');
 
 return [
     'view_manager' => [
@@ -117,13 +119,12 @@ return [
         ],
         'router_class' => LanguageTreeRouteStack::class,
         'default_params' => [
-            'locale' => $core -> getConfigManager()
-                -> facade() -> getI18nConfig('language.default.locale')
+            'locale' => $defaultLocale
         ],
         'translator_text_domain' => 'routing'
     ],
     'translator' => [
-        'locale' => 'en_US',
+        'locale' => $defaultLocale,
         'translation_file_patterns' => array(
             array(
                 'type' => Ini::class,
