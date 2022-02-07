@@ -3,7 +3,9 @@
 declare(strict_types=1);
 
 use Application\Controller\Factory\IndexControllerFactory;
+use Application\Controller\Factory\LegalControllerFactory;
 use Application\Controller\IndexController;
+use Application\Controller\LegalController;
 use Application\Mvc\Router\Http\Factory\LanguageTreeRouteStackDelegatorFactory;
 use Application\Mvc\Router\Http\LanguageTreeRouteStack;
 use Application\Service\Factory\ApplicationServiceFactory;
@@ -44,6 +46,7 @@ use Application\View\Helper\Path\VendorPath;
 use Application\View\Helper\XmlDeclaration;
 use Laminas\I18n\Translator\Loader\Ini;
 use Laminas\Router\Http\Literal;
+use Laminas\Router\Http\Segment;
 use Poseidon\Poseidon;
 
 
@@ -73,6 +76,7 @@ return [
     'controllers' => [
         'factories' => [
             IndexController::class => IndexControllerFactory::class,
+            LegalController::class => LegalControllerFactory::class
         ]
     ],
     'service_manager' => [
@@ -164,6 +168,46 @@ return [
                     'defaults' => [
                         'controller' => IndexController::class,
                         'action' => 'alive'
+                    ]
+                ]
+            ],
+            'application.legal' => [
+              'type' => Segment::class,
+              'options' => [
+                  'route' => $laminas->route('application.legal','application'),
+                  'defaults' => [
+                      'controller' => LegalController::class,
+                      'action' => 'index'
+                  ]
+              ]
+            ],
+            'legal.privacy-policy' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route' => $laminas->route('legal.privacy-policy','application'),
+                    'defaults' => [
+                        'controller' => LegalController::class,
+                        'action' => 'privacy-policy'
+                    ]
+                ]
+            ],
+            'legal.terms-of-service' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route' => $laminas->route('legal.terms-of-service','application'),
+                    'defaults' => [
+                        'controller' => LegalController::class,
+                        'action' => 'terms-of-service'
+                    ]
+                ]
+            ],
+            'legal.data-deletion' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route' => $laminas->route('legal.data-deletion','application'),
+                    'defaults' => [
+                        'controller' => LegalController::class,
+                        'action' => 'data-deletion'
                     ]
                 ]
             ]
