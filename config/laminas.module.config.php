@@ -100,6 +100,9 @@ return [
             'laminas' => function () use ($core) {
                 return $core -> getLaminasManager();
             },
+            'modules' => function () use ($core) {
+                return $core -> getModulesManager();
+            },
             'applicationListener' => ApplicationListenerFactory::class,
             'localeRouteInjector' => LocaleRouteInjectorListenerFactory::class,
             'errorHandlerListener' => ErrorHandlerListenerFactory::class,
