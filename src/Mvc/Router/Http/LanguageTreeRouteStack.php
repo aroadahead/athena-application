@@ -3,6 +3,7 @@
 namespace Application\Mvc\Router\Http;
 
 use AthenaCore\Mvc\Application\Config\Manager\ConfigManager;
+use Google\Service\StreetViewPublish\Pose;
 use Laminas\Config\Config;
 use Laminas\Mvc\I18n\Router\TranslatorAwareTreeRouteStack;
 use Laminas\Router\Http\RouteMatch;
@@ -144,10 +145,10 @@ class LanguageTreeRouteStack extends TranslatorAwareTreeRouteStack
         }
         if (empty($locale) && !empty($translator) && is_callable(array($translator, 'getLocale'))) {
             $locale = $translator -> getLocale();
-            $this -> setDefaultData();
+            $this -> setDefaultData($locale);
         }
 
-        $defaultLocale = $this -> lookup('language.default.locale');
+        $defaultLocale = Poseidon::getCore()->getEnvironmentManager()->getDefaultLocale();
         if (is_null($locale)) {
             $locale = $defaultLocale;
         }
@@ -156,7 +157,7 @@ class LanguageTreeRouteStack extends TranslatorAwareTreeRouteStack
         $log = Poseidon ::getCore() -> getLogManager();
 
         $translator -> setLocale($locale);
-        $translator -> setFallbackLocale($locale);
+        $translator -> setFallbackLocale($defaultLocale);
         \Locale ::setDefault($locale);
         $log -> info("Translator set: $locale with fallback $defaultLocale");
 
@@ -170,10 +171,10 @@ class LanguageTreeRouteStack extends TranslatorAwareTreeRouteStack
         return $res;
     }
 
-    private function setDefaultData(): void
+    private function setDefaultData(string $locale): void
     {
         if ($this -> lookup('language.use_full_locale_code_in_router')) {
-            $val = $this -> lookup('language.default.locale');
+            $val = $locale;
             if ($this -> lookup('language.use_lowercase_in_full_locale_code_in_router')) {
                 $val = strtolower($val);
             }
@@ -182,7 +183,7 @@ class LanguageTreeRouteStack extends TranslatorAwareTreeRouteStack
             }
             $this -> setLastMatchedLocaleKey($val);
         } else {
-            $this -> setLastMatchedLocaleKey($this -> lookup('language.default.locale_key'));
+            $this -> setLastMatchedLocaleKey($locale);
         }
     }
 
