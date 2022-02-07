@@ -1,5 +1,5 @@
 <?php $designConfig = $this -> designConfig(); ?>
-<?php if ($designConfig -> get('meta.xml_doctype_header.enabled')): ?>
+<?php if ($designConfig -> meta -> xml_doctype_header -> enabled): ?>
     <?= $this -> xmlDeclaration() ?>
 <?php endif; ?>
 <?= $this -> doctype($designConfig -> html -> doctype) . PHP_EOL ?>
