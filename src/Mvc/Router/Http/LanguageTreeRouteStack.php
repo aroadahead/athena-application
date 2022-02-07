@@ -3,7 +3,6 @@
 namespace Application\Mvc\Router\Http;
 
 use AthenaCore\Mvc\Application\Config\Manager\ConfigManager;
-use Google\Service\StreetViewPublish\Pose;
 use Laminas\Config\Config;
 use Laminas\Mvc\I18n\Router\TranslatorAwareTreeRouteStack;
 use Laminas\Router\Http\RouteMatch;
@@ -148,7 +147,7 @@ class LanguageTreeRouteStack extends TranslatorAwareTreeRouteStack
             $this -> setDefaultData($locale);
         }
 
-        $defaultLocale = Poseidon::getCore()->getEnvironmentManager()->getDefaultLocale();
+        $defaultLocale = Poseidon ::getCore() -> getEnvironmentManager() -> getDefaultLocale();
         if (is_null($locale)) {
             $locale = $defaultLocale;
         }
@@ -167,6 +166,7 @@ class LanguageTreeRouteStack extends TranslatorAwareTreeRouteStack
         if ($res instanceof RouteMatch && !empty($locale)) {
             $res -> setParam('locale', $locale);
             $res -> setParam('locale_key', $localeKey);
+            Poseidon ::getCore() -> getUserManager() -> setUserLocale($locale);
         }
         return $res;
     }
