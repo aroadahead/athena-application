@@ -19,7 +19,7 @@ class ErrorHandlerListener extends \AthenaCore\Mvc\Service\Listener\AbstractServ
         $this -> attachAs($events, MvcEvent::EVENT_DISPATCH_ERROR, [$this, 'onDispatchError'], $priority);
     }
 
-    public function onDispatchError(MvcEvent $e): void
+    public function onDispatchError(MvcEvent $e): ResponseInterface
     {
         $response = $e -> getResponse();
         $renderer = $this -> container -> get('ViewHelperManager') -> getRenderer();
