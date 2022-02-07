@@ -1,8 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Application\View\Helper;
 
-abstract class AbstractViewHelper extends \Laminas\View\Helper\AbstractHelper
+use Laminas\View\Helper\AbstractHelper;
+
+abstract class AbstractViewHelper extends AbstractHelper
 {
 
 }

@@ -17,6 +17,7 @@ use Application\View\Helper\Config\Factory\DesignConfigDataFactory;
 use Application\View\Helper\Config\Factory\ProjectConfigDataFactory;
 use Application\View\Helper\Config\ProjectConfigData;
 use Application\View\Helper\Factory\AddIEElementsFactory;
+use Application\View\Helper\Factory\XmlDeclarationFactory;
 use Application\View\Helper\Path\CssPath;
 use Application\View\Helper\Path\Factory\CssPathFactory;
 use Application\View\Helper\Path\Factory\ImagePathFactory;
@@ -31,6 +32,7 @@ use Application\View\Helper\Path\SkinsCssPath;
 use Application\View\Helper\Path\SkinsJsPath;
 use Application\View\Helper\Path\SkinsPath;
 use Application\View\Helper\Path\VendorPath;
+use Application\View\Helper\XmlDeclaration;
 use Laminas\Router\Http\Literal;
 use Poseidon\Poseidon;
 
@@ -111,7 +113,8 @@ return [
             ApplicationConfigData::class => ApplicationConfigDataFactory::class,
             CompanyConfigData::class => CompanyConfigDataFactory::class,
             ProjectConfigData::class => ProjectConfigDataFactory::class,
-            AddIEElements::class => AddIEElementsFactory::class
+            AddIEElements::class => AddIEElementsFactory::class,
+            XmlDeclaration::class => XmlDeclarationFactory::class
         ],
         'aliases' => [
             'jsPath' => JsPath::class,
@@ -126,7 +129,8 @@ return [
             'applicationConfig' => ApplicationConfigData::class,
             'companyConfig' => CompanyConfigData::class,
             'projectConfig' => ProjectConfigData::class,
-            'addIeElements' => AddIEElements::class
+            'addIeElements' => AddIEElements::class,
+            'xmlDeclaration' => XmlDeclaration::class
         ]
     ],
 ];
