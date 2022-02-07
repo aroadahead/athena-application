@@ -25,11 +25,11 @@ class ErrorHandlerListener extends \AthenaCore\Mvc\Service\Listener\AbstractServ
         $renderer = $this -> container -> get('ViewHelperManager') -> getRenderer();
         $forceCanonicalRedirect = $this -> container -> get('conf')
             -> lookup('application.force_canonical_on_error_redirect');
+        $force = [];
+        if ($forceCanonicalRedirect) {
+            $force = ['force_canonical' => true];
+        }
         if (empty($e -> getRouteMatch())) {
-            $force = [];
-            if ($forceCanonicalRedirect) {
-                $force = ['force_canonical' => true];
-            }
             $serverUrl = $renderer -> url('not-found', [], $force);
             $response -> getHeaders() -> addHeaderLine('Location', $serverUrl);
             $response -> setStatusCode(MvcController::NOT_FOUND);
@@ -40,10 +40,6 @@ class ErrorHandlerListener extends \AthenaCore\Mvc\Service\Listener\AbstractServ
             $session -> setController($e -> getController());
             $session -> setControllerClass($e -> getControllerClass());
             $session -> setException($e -> getParam('exception', false));
-            $force = [];
-            if($forceCanonicalRedirect){
-                $force = ['force_canonical' => true];
-            }
             $serverUrl = $renderer -> url('error', [], $force);
             $response -> getHeaders() -> addHeaderLine('Location', $serverUrl);
             $response -> setStatusCode(MvcController::SERVER_ERROR);
