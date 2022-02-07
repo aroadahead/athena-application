@@ -8,7 +8,10 @@ class ProjectRouteConfigData extends ProjectConfigData
 {
     public function __invoke(string $node = null, bool $asArray = false): mixed
     {
-        $node = 'route' . (!is_null($node) ? ".{$node}" : "");
-        return parent ::__invoke($node, $asArray);
+        $config = parent ::__invoke('route', $asArray);
+        if($asArray){
+            return $config[$node];
+        }
+        return $config->$node;
     }
 }
