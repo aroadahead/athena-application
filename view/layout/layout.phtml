@@ -1,6 +1,6 @@
 <?php $designConfig = $this -> designConfig(); ?>
 <?php if ($designConfig -> meta -> xml_doctype_header -> enabled): ?>
-    <?= $this -> xmlDeclaration() ?>
+    <?= $this -> xmlDeclaration() . PHP_EOL ?>
 <?php endif; ?>
 <?= $this -> doctype($designConfig -> html -> doctype) . PHP_EOL ?>
 <html lang="en">
