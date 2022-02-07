@@ -2,6 +2,8 @@
 
 namespace Application\View\Helper;
 
+use Psr\Container\ContainerInterface;
+
 class LanguageDropDown extends AbstractViewHelper
 {
     public function __construct(protected ContainerInterface $container)
