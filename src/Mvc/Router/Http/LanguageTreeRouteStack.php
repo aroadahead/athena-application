@@ -150,6 +150,8 @@ class LanguageTreeRouteStack extends TranslatorAwareTreeRouteStack
         $defaultLocale = Poseidon ::getCore() -> getEnvironmentManager() -> getDefaultLocale();
         if (is_null($locale)) {
             $locale = $defaultLocale;
+            $defaultLocaleKey='en-us';
+            $this->setBaseUrl($oldBase.'/'.$defaultLocaleKey);
         }
         $this -> setLastMatchedLocale($locale);
 
