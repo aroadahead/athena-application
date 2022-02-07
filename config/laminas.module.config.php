@@ -125,6 +125,26 @@ return [
                     ],
                 ],
             ],
+            'not-found' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route' => '/not-found',
+                    'defaults' => [
+                        'controller' => IndexController::class,
+                        'action' => 'not-found'
+                    ]
+                ]
+            ],
+            'error' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route' => '/error',
+                    'defaults' => [
+                        'controller' => IndexController::class,
+                        'action' => 'error'
+                    ]
+                ]
+            ],
         ],
         'router_class' => LanguageTreeRouteStack::class,
         'default_params' => [
