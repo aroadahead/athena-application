@@ -2,11 +2,10 @@
 
 namespace Application\Session\Container;
 
-use Laminas\Session\Container;
 use Laminas\View\Model\ViewModel;
 use Throwable;
 
-class ExceptionContainer extends Container
+class ExceptionContainer extends ApplicationSession
 {
     /**
      * Namespace Name

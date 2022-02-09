@@ -4,12 +4,8 @@ namespace Application\Controller;
 
 use Laminas\View\Model\ViewModel;
 
-class LegalController extends ApplicationController
+class LegalController extends ApplicationModuleController
 {
-    public function indexAction()
-    {
-        return new ViewModel([]);
-    }
 
     public function privacyPolicyAction(): ViewModel
     {

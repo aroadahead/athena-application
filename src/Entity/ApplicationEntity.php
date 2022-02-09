@@ -16,6 +16,7 @@ namespace Application\Entity;
  * Import statements
  */
 
+use AthenaCore\Mvc\Entity\AbstractEntity;
 use Poseidon\Data\DataObject;
 
 /**
@@ -24,7 +25,7 @@ use Poseidon\Data\DataObject;
  * @package \Application\Entity
  * @extends DataObject
  */
-abstract class AbstractEntity extends DataObject
+abstract class ApplicationEntity extends AbstractEntity
 {
     /**
      * @return int the entity id

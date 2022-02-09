@@ -11,21 +11,8 @@ use Laminas\View\Model\ViewModel;
 /**
  * Basic index controller
  */
-class IndexController extends ApplicationController
+class IndexController extends ApplicationModuleController
 {
-    /**
-     * Handles the application index action
-     */
-    public function indexAction(): ViewModel
-    {
-        return new ViewModel([]);
-    }
-
-    public function aliveAction(): JsonModel
-    {
-        return new JsonModel(['hello' => $this -> applicationService() -> hello()]);
-    }
-
     /**
      * Not found action
      * @return ViewModel the view model
