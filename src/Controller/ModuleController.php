@@ -61,7 +61,10 @@ class ModuleController extends AbstractMvcController
      */
     public function aliveAction(): JsonModel
     {
-        return new JsonModel(['hello' => $this -> invokeService() -> hello()]);
+        return new JsonModel([
+            'hello' => $this -> invokeService() -> hello(),
+            'module' => $this->rootNamespace
+        ]);
     }
 
     /**
