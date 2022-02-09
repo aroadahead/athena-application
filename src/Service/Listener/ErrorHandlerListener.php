@@ -2,13 +2,15 @@
 
 namespace Application\Service\Listener;
 
+use Application\Controller\ModuleController;
 use Application\Session\Container\ExceptionContainer;
-use AthenaCore\Mvc\Controller\MvcController;
+use AthenaCore\Mvc\Controller\AbstractMvcController;
+use AthenaCore\Mvc\Service\Listener\AbstractServiceListener;
 use Laminas\EventManager\EventManagerInterface;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Stdlib\ResponseInterface;
 
-class ErrorHandlerListener extends \AthenaCore\Mvc\Service\Listener\AbstractServiceListener
+class ErrorHandlerListener extends AbstractServiceListener
 {
 
     /**
@@ -29,7 +31,7 @@ class ErrorHandlerListener extends \AthenaCore\Mvc\Service\Listener\AbstractServ
         if (empty($e -> getRouteMatch())) {
             $serverUrl = $renderer -> url('not-found', [], $force);
             $response -> getHeaders() -> addHeaderLine('Location', $serverUrl);
-            $response -> setStatusCode(MvcController::NOT_FOUND);
+            $response -> setStatusCode(AbstractMvcController::NOT_FOUND);
             $response -> sendHeaders();
         } else {
             $session = new ExceptionContainer();
@@ -40,7 +42,7 @@ class ErrorHandlerListener extends \AthenaCore\Mvc\Service\Listener\AbstractServ
             $session -> setException($e -> getParam('exception', false));
             $serverUrl = $renderer -> url('error', [], $force);
             $response -> getHeaders() -> addHeaderLine('Location', $serverUrl);
-            $response -> setStatusCode(MvcController::SERVER_ERROR);
+            $response -> setStatusCode(AbstractMvcController::SERVER_ERROR);
             $response -> sendHeaders();
             return $response;
         }
