@@ -92,9 +92,9 @@ class ExceptionContainer extends ApplicationSession
     /**
      * Set Exception
      *
-     * @param Throwable $exception the exception instance
+     * @param Throwable|bool $exception the exception instance
      */
-    public function setException(Throwable $exception): void
+    public function setException(Throwable|bool $exception): void
     {
         $this -> offsetSet(self::VAR_EXCEPTION, $exception);
     }
