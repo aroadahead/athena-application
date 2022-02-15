@@ -4,15 +4,17 @@ declare(strict_types=1);
 namespace Application\Controller;
 
 use AthenaCore\Mvc\Controller\AbstractMvcController;
-use AthenaCore\Mvc\Service\MvcService;
+use http\Exception\InvalidArgumentException;
 use Interop\Container\ContainerInterface;
 use Laminas\Filter\Word\CamelCaseToDash;
+use Laminas\View\Model\FeedModel;
 use Laminas\View\Model\JsonModel;
 use Laminas\View\Model\ViewModel;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use ReflectionClass;
 use ReflectionException;
+use function strlen;
 use function strpos;
 use function strtolower;
 use function substr;
@@ -63,7 +65,7 @@ class ModuleController extends AbstractMvcController
     {
         return new JsonModel([
             'hello' => $this -> invokeService() -> hello(),
-            'module' => $this->rootNamespace
+            'module' => $this -> rootNamespace
         ]);
     }
 
@@ -73,5 +75,29 @@ class ModuleController extends AbstractMvcController
     public function indexAction(): ViewModel
     {
         return new ViewModel([]);
+    }
+
+    public function newViewModel(array $args = []): ViewModel
+    {
+        return new ViewModel($args);
+    }
+
+    public function newJsonModel(array $args = []): JsonModel
+    {
+        return new JsonModel($args);
+    }
+
+    public function newFeedModel(array $args = []): FeedModel
+    {
+        return new FeedModel($args);
+    }
+
+    public function redirectUrl():string
+    {
+        $redirectUrl = $this->params()->fromQuery('r','');
+        if(strlen($redirectUrl)>2048){
+            throw new InvalidArgumentException("Redirect url too long.");
+        }
+        return $redirectUrl;
     }
 }
