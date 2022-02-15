@@ -112,6 +112,9 @@ return [
             'modules' => function () use ($core) {
                 return $core -> getModulesManager();
             },
+            'path' => function () use ($core) {
+                return $core -> getFilesystemManager() -> getDirectoryPaths();
+            },
             'applicationListener' => ApplicationListenerFactory::class,
             'localeRouteInjector' => LocaleRouteInjectorListenerFactory::class,
             'errorHandlerListener' => ErrorHandlerListenerFactory::class,
@@ -175,19 +178,19 @@ return [
                 ]
             ],
             'application.legal' => [
-              'type' => Segment::class,
-              'options' => [
-                  'route' => $laminas->route('application.legal','application'),
-                  'defaults' => [
-                      'controller' => LegalController::class,
-                      'action' => 'index'
-                  ]
-              ]
+                'type' => Segment::class,
+                'options' => [
+                    'route' => $laminas -> route('application.legal', 'application'),
+                    'defaults' => [
+                        'controller' => LegalController::class,
+                        'action' => 'index'
+                    ]
+                ]
             ],
             'legal.privacy-policy' => [
                 'type' => Literal::class,
                 'options' => [
-                    'route' => $laminas->route('legal.privacy-policy','application'),
+                    'route' => $laminas -> route('legal.privacy-policy', 'application'),
                     'defaults' => [
                         'controller' => LegalController::class,
                         'action' => 'privacy-policy'
@@ -197,7 +200,7 @@ return [
             'legal.terms-of-service' => [
                 'type' => Literal::class,
                 'options' => [
-                    'route' => $laminas->route('legal.terms-of-service','application'),
+                    'route' => $laminas -> route('legal.terms-of-service', 'application'),
                     'defaults' => [
                         'controller' => LegalController::class,
                         'action' => 'terms-of-service'
@@ -207,7 +210,7 @@ return [
             'legal.data-deletion' => [
                 'type' => Literal::class,
                 'options' => [
-                    'route' => $laminas->route('legal.data-deletion','application'),
+                    'route' => $laminas -> route('legal.data-deletion', 'application'),
                     'defaults' => [
                         'controller' => LegalController::class,
                         'action' => 'data-deletion'
