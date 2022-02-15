@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Application\Form;
 
 use AthenaBridge\Laminas\Form\Element\Button;
+use AthenaBridge\Laminas\Form\Element\ButtonSubmit;
 use AthenaBridge\Laminas\Form\Element\Captcha;
 use AthenaBridge\Laminas\Form\Element\Checkbox;
 use AthenaBridge\Laminas\Form\Element\Csrf;
