@@ -32,7 +32,7 @@ class ApplicationForm extends AbstractForm
      * Return values as array
      * @return array
      */
-    public function getDataAsArray(): array
+    public function getFilteredDataAsArray(): array
     {
         return $this -> getData(FormInterface::VALUES_AS_ARRAY);
     }
