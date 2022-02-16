@@ -60,7 +60,7 @@ class ApplicationListener extends AbstractServiceListener
         $result = $ids -> run($request);
         if (!$result -> isEmpty()) {
             $impact = $facade -> getSecurityConfig('xss.phpids_min_impact_level');
-            if ($impact >= $result -> getImpact()) {
+            if ($result -> getImpact() >= $impact) {
                 die("XSS Attack Detected.");
             }
         }
