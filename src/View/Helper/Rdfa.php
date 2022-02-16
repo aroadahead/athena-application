@@ -16,7 +16,7 @@ class Rdfa extends AbstractViewHelper
 
     public function __invoke()
     {
-        $rdfa = $this -> container -> get('conf') -> getDesignConfig('html.rdfa')
+        $rdfa = $this -> container -> get('conf') -> facade() -> getDesignConfig('html.rdfa')
             -> toArray();
         return implode('  ', array_map(fn($k, $v): string => "$k: $v",
             array_keys($rdfa), array_values($rdfa)));
