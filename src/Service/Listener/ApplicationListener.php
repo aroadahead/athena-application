@@ -47,8 +47,9 @@ class ApplicationListener extends AbstractServiceListener
             'POST' => $e -> getRequest() -> getPost(),
             'COOKIE' => $e -> getRequest() -> getCookie()
         );
+
+        $configFile = $this -> container -> get('path') -> facade() -> assets('phpids/Config.ini.php');
         $facade = $this -> container -> get('conf') -> facade();
-        $configFile = $facade -> assets('phpids/Config.ini.php');
         $init = Init ::init($configFile);
         $overrides = $facade -> getSecurityConfig('xss.phpids_config') -> toArray();
         foreach ($overrides as $key => $data) {
