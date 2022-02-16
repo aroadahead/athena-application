@@ -26,8 +26,14 @@ use Application\View\Helper\Config\Factory\ProjectRouteConfigDataFactory;
 use Application\View\Helper\Config\ProjectConfigData;
 use Application\View\Helper\Config\ProjectRouteConfigData;
 use Application\View\Helper\Factory\AddIEElementsFactory;
+use Application\View\Helper\Factory\HtmlDirFactory;
+use Application\View\Helper\Factory\HtmlIdFactory;
 use Application\View\Helper\Factory\LanguageDropDownFactory;
+use Application\View\Helper\Factory\LocaleFactory;
+use Application\View\Helper\Factory\RdfaFactory;
 use Application\View\Helper\Factory\XmlDeclarationFactory;
+use Application\View\Helper\HtmlDir;
+use Application\View\Helper\HtmlId;
 use Application\View\Helper\LanguageDropDown;
 use Application\View\Helper\Path\CssPath;
 use Application\View\Helper\Path\Factory\CssPathFactory;
@@ -43,6 +49,7 @@ use Application\View\Helper\Path\SkinsCssPath;
 use Application\View\Helper\Path\SkinsJsPath;
 use Application\View\Helper\Path\SkinsPath;
 use Application\View\Helper\Path\VendorPath;
+use Application\View\Helper\Rdfa;
 use Application\View\Helper\XmlDeclaration;
 use Laminas\I18n\Translator\Loader\Ini;
 use Laminas\Navigation\Service\ConstructedNavigationFactory;
@@ -252,7 +259,11 @@ return [
             AddIEElements::class => AddIEElementsFactory::class,
             XmlDeclaration::class => XmlDeclarationFactory::class,
             LanguageDropDown::class => LanguageDropDownFactory::class,
-            ProjectRouteConfigData::class => ProjectRouteConfigDataFactory::class
+            ProjectRouteConfigData::class => ProjectRouteConfigDataFactory::class,
+            HtmlDir::class => HtmlDirFactory::class,
+            \Application\View\Helper\Locale::class => LocaleFactory::class,
+            Rdfa::class => RdfaFactory::class,
+            HtmlId::class => HtmlIdFactory::class
         ],
         'aliases' => [
             'jsPath' => JsPath::class,
@@ -270,7 +281,11 @@ return [
             'addIeElements' => AddIEElements::class,
             'xmlDeclaration' => XmlDeclaration::class,
             'languageDropDown' => LanguageDropDown::class,
-            'projectRouteConfig' => ProjectRouteConfigData::class
+            'projectRouteConfig' => ProjectRouteConfigData::class,
+            'htmlDir' => HtmlDir::class,
+            'locale' => \Application\View\Helper\Locale::class,
+            'rdfa' => Rdfa::class,
+            'htmlId' => HtmlId::class
         ]
     ],
 ];

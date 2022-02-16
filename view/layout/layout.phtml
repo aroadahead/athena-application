@@ -4,8 +4,9 @@
     <?= $this -> xmlDeclaration() . PHP_EOL ?>
 <?php endif; ?>
 <?= $this -> doctype($designConfig -> html -> doctype) . PHP_EOL ?>
-<html lang="en">
-<head>
+<html lang="<?= $this -> locale() -> short(); ?>" id="<?= $this -> htmlId('html'); ?>" dir="<?= $this -> htmlDir(); ?>"
+      prefix="<?= $this -> rdfa(); ?> " class="no_js">
+<head id="<?= $this -> htmlId('head'); ?>">
     <?= $this -> headTitle() . PHP_EOL ?>
     <?= $this -> headMeta() . PHP_EOL ?>
     <?= $this -> headLink() . PHP_EOL ?>
@@ -13,7 +14,7 @@
     <?= $this -> headScript() . PHP_EOL; ?>
     <?= $this -> jsLocalStorage(); ?>
 </head>
-<body>
+<body id="<?= $this -> htmlId('body'); ?>">
 <nav class="navbar navbar-expand-md navbar-dark mb-4" role="navigation">
     <div class="container">
         <div class="navbar-header">
