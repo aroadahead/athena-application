@@ -1,5 +1,7 @@
 <ul class="nav navbar-nav">
-    <?php foreach ($this -> container as $page): ?>
+    <?php use Laminas\Authentication\AuthenticationService;
+
+    foreach ($this -> container as $page): ?>
         <?php //if (!$this -> aclAllowed($page -> resource)) continue; ?>
         <?php $hasChildren = $page -> hasPages() ?>
         <?php if (!$hasChildren): ?>
@@ -17,7 +19,7 @@
                                              aria-haspopup="true"
                                              aria-expanded="false"><?php echo $this -> translate($page -> getLabel()) ?>
                     <span
-                        class="caret"></span></a>
+                            class="caret"></span></a>
                 <div class="dropdown-menu"
                      aria-labelledby="link_<?php echo $page -> getId() ?>">
                     <?php foreach ($page -> getPages() as $child): ?>
@@ -30,7 +32,12 @@
             </li>
         <?php endif; ?>
     <?php endforeach; ?>
-    <?php if ($this -> designConfig('layout.extra.include_language_nav_dropdown')): ?>
+    <?php
+    $authService = new AuthenticationService();
+    if (!$authService -> hasIdentity()):
+        ?>
+        <?php if ($this -> designConfig('layout.extra.include_language_nav_dropdown')): ?>
         <?= $this -> languageDropDown() . PHP_EOL; ?>
+    <?php endif; ?>
     <?php endif; ?>
 </ul>
