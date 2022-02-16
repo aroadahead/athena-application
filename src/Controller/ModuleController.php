@@ -9,6 +9,7 @@ use http\Exception\InvalidArgumentException;
 use Interop\Container\ContainerInterface;
 use Laminas\Authentication\AuthenticationService;
 use Laminas\Filter\Word\CamelCaseToDash;
+use Laminas\Http\Response;
 use Laminas\View\Model\FeedModel;
 use Laminas\View\Model\JsonModel;
 use Laminas\View\Model\ViewModel;
@@ -110,5 +111,19 @@ class ModuleController extends AbstractMvcController
             return null;
         }
         return $authService -> getIdentity();
+    }
+
+    public function notFound(): Response
+    {
+        return $this -> redirect() -> toRoute('not-found');
+    }
+
+    public function toDashboard(): Response
+    {
+        $authService = new AuthenticationService();
+        if ($authService -> hasIdentity()) {
+            return $this -> redirect() -> toRoute('passport.dashboard');
+        }
+        return $this -> notFound();
     }
 }
