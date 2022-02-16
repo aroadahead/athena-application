@@ -16,7 +16,7 @@ class HtmlDir extends AbstractViewHelper
         $locale = $this -> container -> get('router') -> getLastMatchedLocale();
         $available = $this -> container -> get('conf') -> facade()
             -> getI18nConfig('language.available');
-        $code = array_search($locale, $available);
+        $code = array_search($locale, $available -> toArray());
         $key = "language.meta.{$code}.dir";
         return $this -> container -> get('conf') -> facade()
             -> getI18nConfig($key);
