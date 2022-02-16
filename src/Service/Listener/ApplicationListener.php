@@ -50,7 +50,7 @@ class ApplicationListener extends AbstractServiceListener
         $facade = $this -> container -> get('conf') -> facade();
         $configFile = $facade -> assets('phpids/Config.ini.php');
         $init = Init ::init($configFile);
-        $overrides = $facade -> getSecurityConfig('xss.phpids') -> toArray();
+        $overrides = $facade -> getSecurityConfig('xss.phpids_config') -> toArray();
         foreach ($overrides as $key => $data) {
             array_walk($data,
                 fn($e, $k) => $init -> setConfig(array($key => array($k => $e)), true));
