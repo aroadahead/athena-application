@@ -113,6 +113,11 @@ class ModuleController extends AbstractMvcController
         return $authService -> getIdentity();
     }
 
+    public function login():Response
+    {
+        return $this->redirect()->toRoute('login');
+    }
+
     public function notFound(): Response
     {
         return $this -> redirect() -> toRoute('not-found');
