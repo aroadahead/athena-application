@@ -10,28 +10,33 @@ class App extends AbstractViewHelper
     {
     }
 
-    public function __invoke():self
+    public function __invoke(): self
     {
         return $this;
     }
 
-    public function module():string
+    public function module(): string
     {
-        return $this->container->get('registry')->fetch('app.route.module');
+        return $this -> container -> get('registry') -> fetch('app.route.module');
     }
 
-    public function controller():string
+    public function controller(): string
     {
-        return $this->container->get('registry')->fetch('app.route.controller');
+        return $this -> container -> get('registry') -> fetch('app.route.controller');
     }
 
-    public function action():string
+    public function action(): string
     {
-        return $this->container->get('registry')->fetch('app.route.action');
+        return $this -> container -> get('registry') -> fetch('app.route.action');
     }
 
-    public function route():string
+    public function route(): string
     {
-        return $this->container->get('registry')->fetch('app.route.matchedName');
+        return $this -> container -> get('registry') -> fetch('app.route.matchedName');
+    }
+
+    public function protocol(): string
+    {
+        return $this -> container -> get('registry') -> fetch('app.server.SERVER_PROTOCOL');
     }
 }
