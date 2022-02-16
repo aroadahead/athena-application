@@ -15,12 +15,12 @@ class Locale extends AbstractViewHelper
         return $this;
     }
 
-    public function short():string
+    public function key():string
     {
         return $this->container->get('router')->getLastMatchedLocaleKey();
     }
 
-    public function long():string
+    public function locale():string
     {
         return $this->container->get('router')->getLastMatchedLocale();
     }

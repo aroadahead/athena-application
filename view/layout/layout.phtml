@@ -4,7 +4,7 @@
     <?= $this -> xmlDeclaration() . PHP_EOL ?>
 <?php endif; ?>
 <?= $this -> doctype($designConfig -> html -> doctype) . PHP_EOL ?>
-<html lang="<?= $this -> locale() -> short(); ?>" id="<?= $this -> htmlId('html'); ?>" dir="<?= $this -> htmlDir(); ?>"
+<html lang="<?= $this -> locale() -> key(); ?>" id="<?= $this -> htmlId('html'); ?>" dir="<?= $this -> htmlDir(); ?>"
       prefix="<?= $this -> rdfa(); ?> " class="no_js">
 <head id="<?= $this -> htmlId('head'); ?>">
     <?= $this -> headTitle() . PHP_EOL ?>

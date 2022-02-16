@@ -10,8 +10,10 @@ class HtmlId extends AbstractViewHelper
     {
     }
 
-    public function __invoke(string $tag):string
+    public function __invoke(string $tag): string
     {
-        return 'test';
+        $key = "html.{$tag}_id";
+        return $this -> container -> get('conf') -> facade()
+            -> getDesignConfig($key);
     }
 }
