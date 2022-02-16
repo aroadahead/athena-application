@@ -31,6 +31,7 @@ use Application\View\Helper\Factory\HtmlIdFactory;
 use Application\View\Helper\Factory\LanguageDropDownFactory;
 use Application\View\Helper\Factory\LocaleFactory;
 use Application\View\Helper\Factory\RdfaFactory;
+use Application\View\Helper\Factory\UseHeadAssetJqueryFactory;
 use Application\View\Helper\Factory\XmlDeclarationFactory;
 use Application\View\Helper\HtmlDir;
 use Application\View\Helper\HtmlId;
@@ -50,6 +51,7 @@ use Application\View\Helper\Path\SkinsJsPath;
 use Application\View\Helper\Path\SkinsPath;
 use Application\View\Helper\Path\VendorPath;
 use Application\View\Helper\Rdfa;
+use Application\View\Helper\UseHeadAssetJquery;
 use Application\View\Helper\XmlDeclaration;
 use Laminas\I18n\Translator\Loader\Ini;
 use Laminas\Navigation\Service\ConstructedNavigationFactory;
@@ -263,7 +265,8 @@ return [
             HtmlDir::class => HtmlDirFactory::class,
             \Application\View\Helper\Locale::class => LocaleFactory::class,
             Rdfa::class => RdfaFactory::class,
-            HtmlId::class => HtmlIdFactory::class
+            HtmlId::class => HtmlIdFactory::class,
+            UseHeadAssetJquery::class => UseHeadAssetJqueryFactory::class
         ],
         'aliases' => [
             'jsPath' => JsPath::class,
@@ -285,7 +288,8 @@ return [
             'htmlDir' => HtmlDir::class,
             'locale' => \Application\View\Helper\Locale::class,
             'rdfa' => Rdfa::class,
-            'htmlId' => HtmlId::class
+            'htmlId' => HtmlId::class,
+            'useHeadAssetJquery' => UseHeadAssetJquery::class
         ]
     ],
 ];

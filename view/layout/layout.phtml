@@ -13,6 +13,14 @@
     <?= $this -> addIeElements() . PHP_EOL ?>
     <?= $this -> headScript() . PHP_EOL; ?>
     <?= $this -> jsLocalStorage(); ?>
+    <?php if ($this -> useHeadAssetJquery()): ?>
+        <script type="text/javascript">
+            let jq = jQuery.noConflict();
+            let locale = '<?= $this -> locale() -> locale(); ?>';
+            let windowHeight = jq(window).height();
+            let windowWidth = jq(window).width();
+        </script>
+    <?php endif; ?>
 </head>
 <body id="<?= $this -> htmlId('body'); ?>">
 <nav class="navbar navbar-expand-md navbar-dark mb-4" role="navigation">

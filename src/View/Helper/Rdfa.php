@@ -14,7 +14,7 @@ class Rdfa extends AbstractViewHelper
     {
     }
 
-    public function __invoke()
+    public function __invoke():string
     {
         $rdfa = $this -> container -> get('conf') -> facade() -> getDesignConfig('html.rdfa')
             -> toArray();
