@@ -39,4 +39,10 @@ class App extends AbstractViewHelper
     {
         return $this -> container -> get('registry') -> fetch('app.server.server.protocol');
     }
+
+    public function scheme():string
+    {
+        return ((int)$this -> container -> get('registry') -> fetch('app.server.server.port') === 443
+            ? 'https' : 'http');
+    }
 }
