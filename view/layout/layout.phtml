@@ -1,7 +1,7 @@
 <?php $designConfig = $this -> designConfig(); ?>
 <?php $designExtraConfig = $designConfig -> layout -> extra; ?>
 <?php if ($designConfig -> meta -> xml_doctype_header -> enabled): ?>
-<?= $this -> xmlDeclaration() . PHP_EOL ?>
+    <?= $this -> xmlDeclaration() . PHP_EOL ?>
 <?php endif; ?>
 <?= $this -> doctype($designConfig -> html -> doctype) . PHP_EOL ?>
 <html lang="<?= $this -> locale() -> key(); ?>" id="<?= $this -> htmlId('html'); ?>" dir="<?= $this -> htmlDir(); ?>"
@@ -16,11 +16,16 @@
     <?php if ($this -> useHeadAssetJquery()): ?>
         <script type="text/javascript">
             let jq = jQuery.noConflict();
-            let locale = '<?= $this -> locale() -> locale(); ?>';
-            let windowHeight = jq(window).height();
-            let windowWidth = jq(window).width();
         </script>
     <?php endif; ?>
+    <script type="text/javascript">
+        let locale = '<?= $this -> locale() -> locale(); ?>';
+        let localeKey = '<?= $this -> locale() -> key();?>';
+        let appModule = '<?= $this -> app() -> module();?>';
+        let appController = '<?= $this -> app() -> controller();?>';
+        let appAction = '<?= $this -> app() -> action();?>';
+        let appRoute = '<?= $this -> app() -> route();?>';
+    </script>
 </head>
 <body id="<?= $this -> htmlId('body'); ?>">
 <nav class="navbar navbar-expand-md navbar-dark mb-4" role="navigation">

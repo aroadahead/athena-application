@@ -13,6 +13,7 @@ use Application\Service\Listener\Factory\ApplicationListenerFactory;
 use Application\Service\Listener\Factory\ErrorHandlerListenerFactory;
 use Application\Service\Listener\Factory\LocaleRouteInjectorListenerFactory;
 use Application\View\Helper\AddIEElements;
+use Application\View\Helper\App;
 use Application\View\Helper\Config\ApplicationConfigData;
 use Application\View\Helper\Config\CompanyConfigData;
 use Application\View\Helper\Config\ConfigData;
@@ -26,6 +27,7 @@ use Application\View\Helper\Config\Factory\ProjectRouteConfigDataFactory;
 use Application\View\Helper\Config\ProjectConfigData;
 use Application\View\Helper\Config\ProjectRouteConfigData;
 use Application\View\Helper\Factory\AddIEElementsFactory;
+use Application\View\Helper\Factory\AppFactory;
 use Application\View\Helper\Factory\HtmlDirFactory;
 use Application\View\Helper\Factory\HtmlIdFactory;
 use Application\View\Helper\Factory\LanguageDropDownFactory;
@@ -123,6 +125,9 @@ return [
             },
             'path' => function () use ($core) {
                 return $core -> getFilesystemManager() -> getDirectoryPaths();
+            },
+            'registry' => function () use ($core) {
+                return Poseidon ::registry();
             },
             'applicationListener' => ApplicationListenerFactory::class,
             'localeRouteInjector' => LocaleRouteInjectorListenerFactory::class,
@@ -266,7 +271,8 @@ return [
             \Application\View\Helper\Locale::class => LocaleFactory::class,
             Rdfa::class => RdfaFactory::class,
             HtmlId::class => HtmlIdFactory::class,
-            UseHeadAssetJquery::class => UseHeadAssetJqueryFactory::class
+            UseHeadAssetJquery::class => UseHeadAssetJqueryFactory::class,
+            App::class => AppFactory::class
         ],
         'aliases' => [
             'jsPath' => JsPath::class,
@@ -289,7 +295,8 @@ return [
             'locale' => \Application\View\Helper\Locale::class,
             'rdfa' => Rdfa::class,
             'htmlId' => HtmlId::class,
-            'useHeadAssetJquery' => UseHeadAssetJquery::class
+            'useHeadAssetJquery' => UseHeadAssetJquery::class,
+            'app' => App::class
         ]
     ],
 ];
