@@ -222,7 +222,7 @@ return [
         'default_params' => [
             'locale' => $defaultLocale
         ],
-        'translator_text_domain' => 'router'
+        //'translator_text_domain' => 'router'
     ],
     'translator' => [
         'locale' => $defaultLocale,
