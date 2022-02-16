@@ -4,8 +4,10 @@ declare(strict_types=1);
 namespace Application\Controller;
 
 use AthenaCore\Mvc\Controller\AbstractMvcController;
+use AthenaSodium\Entity\User;
 use http\Exception\InvalidArgumentException;
 use Interop\Container\ContainerInterface;
+use Laminas\Authentication\AuthenticationService;
 use Laminas\Filter\Word\CamelCaseToDash;
 use Laminas\View\Model\FeedModel;
 use Laminas\View\Model\JsonModel;
@@ -92,12 +94,21 @@ class ModuleController extends AbstractMvcController
         return new FeedModel($args);
     }
 
-    public function redirectUrl():string
+    public function redirectUrl(): string
     {
-        $redirectUrl = $this->params()->fromQuery('r','');
-        if(strlen($redirectUrl)>2048){
+        $redirectUrl = $this -> params() -> fromQuery('r', '');
+        if (strlen($redirectUrl) > 2048) {
             throw new InvalidArgumentException("Redirect url too long.");
         }
         return $redirectUrl;
+    }
+
+    public function user(): User|null
+    {
+        $authService = new AuthenticationService();
+        if (!$authService -> hasIdentity()) {
+            return null;
+        }
+        return $authService -> getIdentity();
     }
 }
