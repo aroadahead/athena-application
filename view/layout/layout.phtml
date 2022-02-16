@@ -19,18 +19,6 @@
             let locale = '<?= $this -> locale() -> locale(); ?>';
             let windowHeight = jq(window).height();
             let windowWidth = jq(window).width();
-            (function () {
-                    jq.browser.msie = false;
-                    jq.browser.version = 0;
-                    if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
-                        jq.browser.msie = true;
-                        jq.browser.version = RegExp.$1;
-                    }
-                }
-            )();
-            jq(function () {
-                jq(document).pngFix();
-            });
         </script>
     <?php endif; ?>
 </head>
