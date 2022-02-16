@@ -37,6 +37,6 @@ class App extends AbstractViewHelper
 
     public function protocol(): string
     {
-        return $this -> container -> get('registry') -> fetch('app.server.SERVER_PROTOCOL');
+        return $this -> container -> get('registry') -> fetch('app.server.server.protocol');
     }
 }
