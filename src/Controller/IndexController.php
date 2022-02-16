@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Application\Controller;
 
 use Application\Session\Container\ExceptionContainer;
-use Laminas\View\Model\JsonModel;
 use Laminas\View\Model\ViewModel;
 
 /**
@@ -25,19 +24,13 @@ class IndexController extends ApplicationModuleController
     public function errorAction(): ViewModel
     {
         $session = new ExceptionContainer();
-        $message = $session -> getMessage();
-        $reason = $session -> getReason();
-        $exception = $session -> getException();
-        $controller = $session -> getController();
-        $controllerClass = $session -> getControllerClass();
-        $displayExceptions = $this -> container -> get('env') -> isDevelopmentEnvironment();
         return new ViewModel([
-            'reason' => $reason,
-            'exception' => $exception,
-            'message' => $message,
-            'controller' => $controller,
-            'controller_class' => $controllerClass,
-            'display_exceptions' => $displayExceptions
+            'reason' => $session -> getReason(),
+            'exception' => $session -> getException(),
+            'message' => $session -> getMessage(),
+            'controller' => $session -> getController(),
+            'controller_class' => $session -> getControllerClass(),
+            'display_exceptions' => $this -> container -> get('env') -> isDevelopmentEnvironment()
         ]);
     }
 }

@@ -35,11 +35,19 @@ class ErrorHandlerListener extends AbstractServiceListener
             $response -> sendHeaders();
         } else {
             $session = new ExceptionContainer();
-            $session -> setMessage($e -> getResult());
-            $session -> setReason($e -> getError());
-            $session -> setController($e -> getController());
-            $session -> setControllerClass($e -> getControllerClass());
-            $session -> setException($e -> getParam('exception', false));
+            if($this->container->get('env')->isDevelopmentEnvironment()){
+                $session -> setMessage($e -> getResult());
+                $session -> setReason($e -> getError());
+                $session -> setController($e -> getController());
+                $session -> setControllerClass($e -> getControllerClass());
+                $session -> setException($e -> getParam('exception', false));
+            } else {
+                $session->setMessage('');
+                $session->setReason('');
+                $session->setControllerClass('');
+                $session->setController('');
+                $session->setException(false);
+            }
             $serverUrl = $renderer -> url('error', [], $force);
             $response -> getHeaders() -> addHeaderLine('Location', $serverUrl);
             $response -> setStatusCode(AbstractMvcController::SERVER_ERROR);

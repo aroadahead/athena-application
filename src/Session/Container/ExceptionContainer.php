@@ -57,6 +57,11 @@ class ExceptionContainer extends ApplicationSession
         parent ::__construct(self::NAMESPACE_NAME);
     }
 
+    public function setDevEnvironment(bool $devEnv): void
+    {
+        $this -> offsetSet('devEnv', $devEnv);
+    }
+
     /**
      * Clears container session storage
      *
@@ -168,10 +173,15 @@ class ExceptionContainer extends ApplicationSession
     /**
      * Return exception
      *
-     * @return Throwable the exception instance
+     * @return Throwable|bool the exception instance
      */
-    public function getException(): Throwable
+    public function getException(): Throwable|bool
     {
         return $this -> offsetGet(self::VAR_EXCEPTION);
+    }
+
+    public function isDevEnv():bool
+    {
+        return ($this->offsetGet('devEnv')===true);
     }
 }
