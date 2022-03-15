@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Application\Controller;
 
 use AthenaBridge\Laminas\Authentication\AuthenticationService;
+use Google\Service\ServiceControl\Auth;
 use Laminas\Session\Container;
 use Laminas\Session\ManagerInterface;
 use Laminas\Session\SessionManager;
@@ -69,6 +70,11 @@ class ModuleController extends AbstractMvcController
         $this -> rootNamespace = strtolower(self ::$filter -> filter($namespace));
         $this -> applicationCore = $this -> container -> get('core');
         $this -> exceptionManager = $this -> applicationCore -> getLaminasManager() -> getExceptionManager();
+        $this->authenticationService = new AuthenticationService();
+        $this->sessionManager = Container::getDefaultManager();
+        $this->configFacade = $this->applicationCore
+            ->getConfigManager()->facade();
+
     }
 
     public function core(): ApplicationCore
@@ -159,7 +165,7 @@ class ModuleController extends AbstractMvcController
      */
     public function authService(): AuthenticationService
     {
-        return new AuthenticationService();
+        return $this->authenticationService;
     }
 
     /**
@@ -167,9 +173,6 @@ class ModuleController extends AbstractMvcController
      */
     public function sessionManager(): ManagerInterface
     {
-        if($this->sessionManager === null){
-            $this->sessionManager = Container::getDefaultManager();
-        }
         return $this -> sessionManager;
     }
 
@@ -178,10 +181,6 @@ class ModuleController extends AbstractMvcController
      */
     public function configFacade(): Facade
     {
-        if($this->configFacade === null){
-            $this->configFacade = $this->applicationCore
-                ->getConfigManager()->facade();
-        }
         return $this -> configFacade;
     }
 
