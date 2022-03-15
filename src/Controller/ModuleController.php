@@ -68,10 +68,7 @@ class ModuleController extends AbstractMvcController
         $namespace = substr($namespace, 0, strpos($namespace, '\\'));
         $this -> rootNamespace = strtolower(self ::$filter -> filter($namespace));
         $this -> applicationCore = $this -> container -> get('core');
-        $this -> sessionManager = Container::getDefaultManager();
         $this -> exceptionManager = $this -> applicationCore -> getLaminasManager() -> getExceptionManager();
-        $this -> authenticationService = new AuthenticationService();
-        $this -> configFacade = $this -> container -> get('conf') -> facade();
     }
 
     public function core(): ApplicationCore
@@ -162,7 +159,7 @@ class ModuleController extends AbstractMvcController
      */
     public function authService(): AuthenticationService
     {
-        return $this -> authenticationService;
+        return new AuthenticationService();
     }
 
     /**
@@ -170,6 +167,9 @@ class ModuleController extends AbstractMvcController
      */
     public function sessionManager(): ManagerInterface
     {
+        if($this->sessionManager === null){
+            $this->sessionManager = Container::getDefaultManager();
+        }
         return $this -> sessionManager;
     }
 
@@ -178,6 +178,10 @@ class ModuleController extends AbstractMvcController
      */
     public function configFacade(): Facade
     {
+        if($this->configFacade === null){
+            $this->configFacade = $this->applicationCore
+                ->getConfigManager()->facade();
+        }
         return $this -> configFacade;
     }
 
