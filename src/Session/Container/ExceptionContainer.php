@@ -107,10 +107,10 @@ class ExceptionContainer extends ApplicationSession
     /**
      * Set Controller
      *
-     * @param string $controller the exception controller
+     * @param string|null $controller the exception controller
      * @return void
      */
-    public function setController(string $controller): void
+    public function setController(?string $controller): void
     {
         $this -> offsetSet(self::VAR_CONTROLLER, $controller);
     }
@@ -118,10 +118,10 @@ class ExceptionContainer extends ApplicationSession
     /**
      * Set Controller Class
      *
-     * @param string $controllerClass the exception controller class
+     * @param string|null $controllerClass the exception controller class
      * @return void
      */
-    public function setControllerClass(string $controllerClass): void
+    public function setControllerClass(?string $controllerClass): void
     {
         $this -> offsetSet(self::VAR_CONTROLLER_CLASS, $controllerClass);
     }
