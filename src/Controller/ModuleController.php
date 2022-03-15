@@ -67,7 +67,7 @@ class ModuleController extends AbstractMvcController
         $namespace = substr($namespace, 0, strpos($namespace, '\\'));
         $this -> rootNamespace = strtolower(self ::$filter -> filter($namespace));
         $this -> applicationCore = $this -> container -> get('core');
-        $this -> sessionManager = Container ::getDefaultManager();
+        $this -> sessionManager = Container::getDefaultManager();
         $this -> exceptionManager = $this -> applicationCore -> getLaminasManager() -> getExceptionManager();
         $this -> authenticationService = new AuthenticationService();
         $this -> configFacade = $this -> container -> get('conf') -> facade();
