@@ -4,8 +4,9 @@ declare(strict_types=1);
 namespace Application\Controller;
 
 use AthenaBridge\Laminas\Authentication\AuthenticationService;
-use AthenaBridge\Laminas\Session\Container;
-use AthenaBridge\Laminas\Session\SessionManager;
+use Laminas\Session\Container;
+use Laminas\Session\ManagerInterface;
+use Laminas\Session\SessionManager;
 use AthenaBridge\Laminas\View\Model\FeedModel;
 use AthenaBridge\Laminas\View\Model\JsonModel;
 use AthenaBridge\Laminas\View\Model\ViewModel;
@@ -41,15 +42,15 @@ class ModuleController extends AbstractMvcController
      *
      * @var AuthenticationService|null
      */
-    private ?AuthenticationService $authenticationService = null;
+    private ?AuthenticationService $authenticationService;
 
-    private ?SessionManager $sessionManager = null;
+    private ?ManagerInterface $sessionManager;
 
-    private ?Facade $configFacade = null;
+    private ?Facade $configFacade;
 
-    private ?ExceptionManager $exceptionManager = null;
+    private ?ExceptionManager $exceptionManager;
 
-    private ?ApplicationCore $applicationCore = null;
+    private ?ApplicationCore $applicationCore;
 
     /**
      * Camelcase to dash filter
