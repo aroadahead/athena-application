@@ -166,9 +166,9 @@ class ModuleController extends AbstractMvcController
     }
 
     /**
-     * @return SessionManager
+     * @return ManagerInterface
      */
-    public function sessionManager(): SessionManager
+    public function sessionManager(): ManagerInterface
     {
         return $this -> sessionManager;
     }
