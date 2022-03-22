@@ -4,10 +4,6 @@ declare(strict_types=1);
 namespace Application\Controller;
 
 use AthenaBridge\Laminas\Authentication\AuthenticationService;
-use Google\Service\ServiceControl\Auth;
-use Laminas\Session\Container;
-use Laminas\Session\ManagerInterface;
-use Laminas\Session\SessionManager;
 use AthenaBridge\Laminas\View\Model\FeedModel;
 use AthenaBridge\Laminas\View\Model\JsonModel;
 use AthenaBridge\Laminas\View\Model\ViewModel;
@@ -20,6 +16,8 @@ use http\Exception\InvalidArgumentException;
 use Interop\Container\ContainerInterface;
 use Laminas\Filter\Word\CamelCaseToDash;
 use Laminas\Http\Response;
+use Laminas\Session\Container;
+use Laminas\Session\ManagerInterface;
 use Laminas\Uri\UriFactory;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
@@ -61,8 +59,8 @@ class ModuleController extends AbstractMvcController
     /** @throws ReflectionException */
     public function __construct(protected ContainerInterface $container)
     {
-        if (self ::$filter === null) {
-            self ::$filter = new CamelCaseToDash();
+        if (self::$filter === null) {
+            self::$filter = new CamelCaseToDash();
         }
 
         $namespace = (new ReflectionClass($this)) -> getNamespaceName();
@@ -70,10 +68,10 @@ class ModuleController extends AbstractMvcController
         $this -> rootNamespace = strtolower(self ::$filter -> filter($namespace));
         $this -> applicationCore = $this -> container -> get('core');
         $this -> exceptionManager = $this -> applicationCore -> getLaminasManager() -> getExceptionManager();
-        $this->authenticationService = new AuthenticationService();
-        $this->sessionManager = Container::getDefaultManager();
-        $this->configFacade = $this->applicationCore
-            ->getConfigManager()->facade();
+        $this -> authenticationService = new AuthenticationService();
+        $this -> sessionManager = Container ::getDefaultManager();
+        $this -> configFacade = $this -> applicationCore
+            -> getConfigManager() -> facade();
 
     }
 
@@ -165,7 +163,7 @@ class ModuleController extends AbstractMvcController
      */
     public function authService(): AuthenticationService
     {
-        return $this->authenticationService;
+        return $this -> authenticationService;
     }
 
     /**

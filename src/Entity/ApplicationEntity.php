@@ -18,6 +18,7 @@ namespace Application\Entity;
 
 use AthenaCore\Mvc\Entity\AbstractEntity;
 use Poseidon\Data\DataObject;
+use function intval;
 
 /**
  * Class AbstractEntity
@@ -32,7 +33,7 @@ abstract class ApplicationEntity extends AbstractEntity
      */
     public function getId(): int
     {
-        return $this -> translateToInt($this -> get("id"));
+        return intval($this -> get("id"));
     }
 
     /**
@@ -40,7 +41,7 @@ abstract class ApplicationEntity extends AbstractEntity
      */
     public function getModifiedby(): int
     {
-        return $this -> translateToInt($this -> get('modifiedby'));
+        return intval($this -> get('modifiedby'));
     }
 
     /**
@@ -48,7 +49,7 @@ abstract class ApplicationEntity extends AbstractEntity
      */
     public function getParentid(): int
     {
-        return $this -> translateToInt($this -> get('parentid'));
+        return intval($this -> get('parentid'));
     }
 
     /**
@@ -64,7 +65,7 @@ abstract class ApplicationEntity extends AbstractEntity
      */
     public function getSort(): int
     {
-        return $this -> translateToInt($this -> get('sort'));
+        return intval($this -> get('sort'));
     }
 
     /**
@@ -128,7 +129,7 @@ abstract class ApplicationEntity extends AbstractEntity
      */
     public function getStatus(): int
     {
-        return $this -> translateToInt($this -> get('status'));
+        return intval($this -> get('status'));
     }
 
     /**

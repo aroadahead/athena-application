@@ -17,7 +17,7 @@ use AthenaBridge\Laminas\Form\Element\Select;
 use AthenaBridge\Laminas\Form\Element\Submit;
 use AthenaBridge\Laminas\Form\Element\Text;
 use AthenaCore\Mvc\Form\AbstractForm;
-use Laminas\Config\Config;
+use AthenaBridge\Laminas\Config\Config;
 use Laminas\Form\Element;
 use Laminas\Form\FormInterface;
 
@@ -73,7 +73,7 @@ class ApplicationForm extends AbstractForm
      *
      * @return void
      */
-    public function GETMethod(): void
+    public function queryMethod(): void
     {
         $this -> setAttribute('method', parent::METHOD_GET);
     }

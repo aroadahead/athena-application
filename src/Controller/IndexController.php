@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Application\Controller;
 
 use Application\Session\Container\ExceptionContainer;
-use Laminas\View\Model\ViewModel;
+use AthenaBridge\Laminas\View\Model\ViewModel;
 
 /**
  * Basic index controller
@@ -18,13 +18,13 @@ class IndexController extends ApplicationModuleController
      */
     public function notFoundAction(): ViewModel
     {
-        return new ViewModel([]);
+        return $this->newViewModel();
     }
 
     public function errorAction(): ViewModel
     {
         $session = new ExceptionContainer();
-        return new ViewModel([
+        return $this->newViewModel([
             'reason' => $session -> getReason(),
             'exception' => $session -> getException(),
             'message' => $session -> getMessage(),
