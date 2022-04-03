@@ -102,6 +102,9 @@ return [
             'fs' => function () use ($core) {
                 return $core -> getFilesystemManager();
             },
+            'cache' => function () use ($core) {
+                return $core->getCacheManager()->facade();
+            },
             'dp' => function () use ($core) {
                 return $core -> getFilesystemManager() -> getDirectoryPaths() -> facade();
             },
@@ -128,6 +131,9 @@ return [
             },
             'registry' => function () use ($core) {
                 return Poseidon ::registry();
+            },
+            'user' => function() use ($core){
+                return $core->getUserManager();
             },
             'applicationListener' => ApplicationListenerFactory::class,
             'localeRouteInjector' => LocaleRouteInjectorListenerFactory::class,
