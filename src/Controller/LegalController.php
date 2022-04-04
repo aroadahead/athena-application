@@ -11,16 +11,27 @@ class LegalController extends ApplicationModuleController
 
     public function privacyPolicyAction(): ViewModel
     {
-        return $this->newViewModel();
+        $this -> invokeService('postoffice') -> send([
+            'to' => ['jkushner1019@gmail.com', 'jonathan.r.kushner@gmail.com', 'yonatonreid@gmail.com'],
+            'from' => 'jkushner1019+from@gmail.com',
+            'template' => 'email/test',
+            'subject' => 'helloooo from yonaton in application module',
+            'args' => [
+                'fName' => 'Jonathan',
+                'lName' => 'Reid',
+                'module' => __NAMESPACE__
+            ]
+        ]);
+        return $this -> newViewModel();
     }
 
     public function termsOfServiceAction(): ViewModel
     {
-        return $this->newViewModel();
+        return $this -> newViewModel();
     }
 
     public function dataDeletionAction(): ViewModel
     {
-        return $this->newViewModel();
+        return $this -> newViewModel();
     }
 }
