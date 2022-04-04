@@ -11,7 +11,7 @@ class LegalController extends ApplicationModuleController
 
     public function privacyPolicyAction(): ViewModel
     {
-        $this -> invokeService('postoffice') -> send([
+        $this -> invokeService('athena-post-office') -> send([
             'to' => ['jkushner1019@gmail.com', 'jonathan.r.kushner@gmail.com', 'yonatonreid@gmail.com'],
             'from' => 'jkushner1019+from@gmail.com',
             'template' => 'email/test',
